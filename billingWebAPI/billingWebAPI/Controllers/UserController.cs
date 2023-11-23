@@ -18,19 +18,6 @@ namespace billingWebAPI.Controllers
             _context = context;
         }
 
-        /*[HttpPost("addUser")]
-        public async Task<ActionResult<UsersTb>> CreateUser([FromBody] UsersTb user)
-        {
-            if (user == null)
-            {
-                return BadRequest("Entry Invalid");
-            }
-            _context.Add(user);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction(nameof(GetUser), new { id = user.UserId }, user);
-        }*/
-
         [HttpPost("addUser")]
 
         public async Task<ActionResult<UsersTb>> CreateUser([FromBody] UsersTb user)

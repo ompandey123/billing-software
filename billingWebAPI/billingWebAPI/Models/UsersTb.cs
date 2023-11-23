@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization; // Add this using statement
+
 
 namespace billingWebAPI.Models
 {
@@ -7,9 +10,9 @@ namespace billingWebAPI.Models
     {
         public UsersTb()
         {
-            BillingDetailTbs = new HashSet<BillingDetailTb>();
-            ProductRetailerMasterTbs = new HashSet<ProductRetailerMasterTb>();
-            ProductTbs = new HashSet<ProductTb>();
+            //BillingDetailTbs = new HashSet<BillingDetailTb>();
+            //ProductRetailerMasterTbs = new HashSet<ProductRetailerMasterTb>();
+            //ProductTbs = new HashSet<ProductTb>();
         }
 
         public int UserId { get; set; }
@@ -19,8 +22,13 @@ namespace billingWebAPI.Models
         public string? Contact { get; set; }
         public string? UserType { get; set; }
 
-        public virtual ICollection<BillingDetailTb> BillingDetailTbs { get; set; }
-        public virtual ICollection<ProductRetailerMasterTb> ProductRetailerMasterTbs { get; set; }
-        public virtual ICollection<ProductTb> ProductTbs { get; set; }
+        [JsonIgnore] // This property will be ignored in Swagger documentation
+        public virtual ICollection<BillingDetailTb>? BillingDetailTbs { get; set; }
+
+        [JsonIgnore] // This property will be ignored in Swagger documentation
+        public virtual ICollection<ProductRetailerMasterTb>? ProductRetailerMasterTbs { get; set; }
+
+        [JsonIgnore] // This property will be ignored in Swagger documentation
+        public virtual ICollection<ProductTb>? ProductTbs { get; set; }
     }
 }

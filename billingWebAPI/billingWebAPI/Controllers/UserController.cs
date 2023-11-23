@@ -1,6 +1,9 @@
 ﻿using billingWebAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace billingWebAPI.Controllers
 {
@@ -16,7 +19,7 @@ namespace billingWebAPI.Controllers
         }
 
         [HttpPost("addUser")]
-        public async Task<ActionResult<UsersTb>> CreateUser([FromBody]  UsersTb user)
+        public async Task<ActionResult<UsersTb>> CreateUser([FromBody] UsersTb user)
         {
             if (user == null)
             {
@@ -25,7 +28,7 @@ namespace billingWebAPI.Controllers
             _context.Add(user);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetUser), new {id = user.UserId}, user);
+            return CreatedAtAction(nameof(GetUser), new { id = user.UserId }, user);
         }
 
         [HttpGet("{id}")]
@@ -33,12 +36,12 @@ namespace billingWebAPI.Controllers
         {
             var user = await _context.UsersTbs.FindAsync(id);
 
-            if(user == null) 
+            if (user == null)
             {
                 return NotFound();
             }
 
-            return Ok(user);    
+            return Ok(user);
         }
     }
 }

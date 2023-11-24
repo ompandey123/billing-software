@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace billingWebAPI.Models
 {
@@ -7,7 +8,7 @@ namespace billingWebAPI.Models
     {
         public SupplierTb()
         {
-            ProductSupplierMasters = new HashSet<ProductSupplierMaster>();
+            //ProductSupplierMasters = new HashSet<ProductSupplierMaster>();
         }
 
         public int SupplierId { get; set; }
@@ -15,6 +16,8 @@ namespace billingWebAPI.Models
         public string? Address { get; set; }
         public string? Contact { get; set; }
 
-        public virtual ICollection<ProductSupplierMaster> ProductSupplierMasters { get; set; }
+        [JsonIgnore]
+
+        public virtual ICollection<ProductSupplierMaster>? ProductSupplierMasters { get; set; }
     }
 }

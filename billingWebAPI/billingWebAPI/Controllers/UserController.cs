@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace billingWebAPI.Controllers
 {
@@ -18,6 +19,7 @@ namespace billingWebAPI.Controllers
             _context = context;
         }
 
+        [Authorize]
         [HttpPost("addUser")]
 
         public async Task<ActionResult<UsersTb>> CreateUser([FromBody] UsersTb user)

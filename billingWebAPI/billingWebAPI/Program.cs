@@ -27,45 +27,45 @@ builder.Services.AddDbContext<billingDBContext>(options => options.UseSqlServer(
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(sw => 
+    builder.Services.AddSwaggerGen(sw => 
 
-sw.SwaggerDoc("v1",
-new OpenApiInfo { Title = "billingSw Api", Version = "1.0"}));
+    sw.SwaggerDoc("v1",
+    new OpenApiInfo { Title = "billingSw Api", Version = "1.0"}));
 
-builder.Services.AddSwaggerGen(s => 
+    builder.Services.AddSwaggerGen(s => 
 
-s.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-{
-    In = ParameterLocation.Header,
-    Description = "INSERT JWT TOKEN",
-    Name = "Authorization",
-    Type = SecuritySchemeType.Http,
-    BearerFormat = "JWT",
-    Scheme = "bearer"
-}));
-
-builder.Services.AddSwaggerGen(w =>
-
-w.AddSecurityRequirement(
-    
-    new OpenApiSecurityRequirement
+    s.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
+        In = ParameterLocation.Header,
+        Description = "INSERT JWT TOKEN",
+        Name = "Authorization",
+        Type = SecuritySchemeType.Http,
+        BearerFormat = "JWT",
+        Scheme = "bearer"
+    }));
+
+    builder.Services.AddSwaggerGen(w =>
+
+    w.AddSecurityRequirement(
+    
+        new OpenApiSecurityRequirement
         {
-            new OpenApiSecurityScheme
             {
-                Reference = new OpenApiReference
+                new OpenApiSecurityScheme
                 {
-                    Type = ReferenceType.SecurityScheme,
-                    Id = "Bearer"
-                }
-            },
-            new string[]{}
+                    Reference = new OpenApiReference
+                    {
+                        Type = ReferenceType.SecurityScheme,
+                        Id = "Bearer"
+                    }
+                },
+                new string[]{}
+            }
         }
-    }
 
-    )
+        )
 
-);
+    );
 
 var app = builder.Build();
 

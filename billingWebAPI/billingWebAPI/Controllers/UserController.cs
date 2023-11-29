@@ -5,6 +5,9 @@ using Microsoft.Data.SqlClient;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
+//using Dapper;
+using System.Runtime.CompilerServices;
+using System.Data;
 
 namespace billingWebAPI.Controllers
 {
@@ -19,7 +22,7 @@ namespace billingWebAPI.Controllers
             _context = context;
         }
 
-        [Authorize]
+        //[Authorize]
         [HttpPost("addUser")]
 
         public async Task<ActionResult<UsersTb>> CreateUser([FromBody] UsersTb user)
@@ -53,7 +56,7 @@ namespace billingWebAPI.Controllers
 
         [HttpGet("{id}")]
         public async Task<ActionResult<UsersTb>> GetUser(int id)
-        {
+        {   
             var user = await _context.UsersTbs.FindAsync(id);
 
             if (user == null)

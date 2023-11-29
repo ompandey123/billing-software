@@ -22,13 +22,28 @@ namespace billingWebAPI.Controllers
             _context = context ?? throw new ArgumentNullException(nameof(_context));
         }
 
-        private async Task<UsersTb> AuthenticateUserAsync(string email, string password)
+        private async Task<User> AuthenticateUserAsync(string email, string password)
         {
-            //Use Async method to query DB
-            return await _context.UsersTbs.SingleOrDefaultAsync(u => u.Email == email && u.Password == password)!;
+            // Use Async method to query DB
+            var usersTb = await _context.UsersTbs.SingleOrDefaultAsync(u => u.Email == email && u.Password == password);
+
+            if (usersTb != null)
+            {
+                var user = new User
+                {
+                    // Map properties accordingly
+                    Email = usersTb.Email,
+                    Password = usersTb.Password,
+                    // Add other properties as needed
+                };
+
+                return user;
+            }
+
+            return null;
         }
 
-        private string GenerateToken(UsersTb user)
+        private string GenerateToken(User user)
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
@@ -37,7 +52,7 @@ namespace billingWebAPI.Controllers
                 _config["Jwt:Issuer"],
                 _config["Jwt:Audience"],
                 null,
-                expires: DateTime.Now.AddMinutes(1),
+                expires: DateTime.Now.AddMinutes(10),
                 signingCredentials: credentials
                 );
 
@@ -46,7 +61,7 @@ namespace billingWebAPI.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        public async Task<IActionResult> Login([FromBody] UsersTb user)
+        public async Task<IActionResult> Login([FromBody] Login user)
         {
             IActionResult response = Unauthorized();
             var authenticateUser = await AuthenticateUserAsync(user.Email, user.Password);

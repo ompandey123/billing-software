@@ -11,6 +11,7 @@ using System.Data;
 
 namespace billingWebAPI.Controllers
 {
+    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
@@ -22,7 +23,7 @@ namespace billingWebAPI.Controllers
             _context = context;
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpPost("addUser")]
 
         public async Task<ActionResult<UsersTb>> CreateUser([FromBody] UsersTb user)

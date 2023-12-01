@@ -37,11 +37,11 @@ builder.Services.AddEndpointsApiExplorer();
     s.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         In = ParameterLocation.Header,
-        Description = "INSERT JWT TOKEN",
+        Description = "Insert JWT token",
         Name = "Authorization",
         Type = SecuritySchemeType.Http,
         BearerFormat = "JWT",
-        Scheme = "bearer"
+        Scheme = "Bearer"
     }));
 
     builder.Services.AddSwaggerGen(w =>
@@ -59,13 +59,9 @@ builder.Services.AddEndpointsApiExplorer();
                         Id = "Bearer"
                     }
                 },
-                new string[]{}
+                new List<string>()
             }
-        }
-
-        )
-
-    );
+}));
 
 var app = builder.Build();
 

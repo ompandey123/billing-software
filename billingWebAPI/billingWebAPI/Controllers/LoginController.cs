@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -16,15 +17,20 @@ namespace billingWebAPI.Controllers
     {
         private readonly IConfiguration _config;
         private readonly billingDBContext _context;
+        private readonly ILogger<LoginController> _logger;
 
-        public LoginController(IConfiguration config, billingDBContext context)
+        public LoginController(IConfiguration config, billingDBContext context, ILogger<LoginController> logger)
         {
             _config = config ?? throw new ArgumentNullException(nameof(config));
             _context = context ?? throw new ArgumentNullException(nameof(_context));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         private async Task<User> AuthenticateUserAsync(string email, string password)
         {
+
+            _logger.LogInformation($"Authenticating user with email: {email}");
+
             // Use Async method to query DB
             var usersTb = await _context.UsersTbs.SingleOrDefaultAsync(u => u.Email == email && u.Password == password);
 
@@ -57,6 +63,8 @@ namespace billingWebAPI.Controllers
                 new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
 
             };
+            _logger.LogInformation($"Token claims: {string.Join(", ", claims.Select(c => $"{c.Type}: {c.Value}"))}");
+
 
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
@@ -84,44 +92,15 @@ namespace billingWebAPI.Controllers
             {
                 var token = GenerateToken(auntenticateUser);
                 response = Ok(new { Token = token });
+                _logger.LogInformation($"User '{user.Email}' successfully logged in.");
             }
             else
             {
+                _logger.LogWarning($"Invalid login attempt for user with email: {user.Email}");
                 return BadRequest("Invalid username or pwd");
             }
             return response;
         }
 
-        //private string GenerateToken(User user)
-        //{
-        //    var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
-        //    var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-
-        //    var token = new JwtSecurityToken(
-        //        _config["Jwt:Issuer"],
-        //        _config["Jwt:Audience"],
-        //        null,
-        //        expires: DateTime.Now.AddMinutes(10),
-        //        signingCredentials: credentials
-        //        );
-
-        //    return new JwtSecurityTokenHandler().WriteToken(token);
-        //}
-
-        //[AllowAnonymous]
-        //[HttpPost]
-        //public async Task<IActionResult> Login([FromBody] Login user)
-        //{
-        //    IActionResult response = Unauthorized();
-        //    var authenticateUser = await AuthenticateUserAsync(user.Email, user.Password);
-
-        //    if (authenticateUser != null)
-        //    { 
-        //        var token = GenerateToken(authenticateUser);
-        //        response = Ok(new {Token = token});
-        //    }
-
-        //    return response;
-        //}
     }
 }

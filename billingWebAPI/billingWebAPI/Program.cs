@@ -27,7 +27,7 @@ builder.Services.AddDbContext<billingDBContext>(options => options.UseSqlServer(
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-    builder.Services.AddSwaggerGen(sw => 
+builder.Services.AddSwaggerGen(sw => 
 
     sw.SwaggerDoc("v1",
     new OpenApiInfo { Title = "billingSw Api", Version = "1.0"}));
@@ -36,12 +36,12 @@ builder.Services.AddEndpointsApiExplorer();
 
     s.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
-        In = ParameterLocation.Header,
-        Description = "Insert JWT token",
         Name = "Authorization",
         Type = SecuritySchemeType.Http,
+        Scheme = "Bearer",
         BearerFormat = "JWT",
-        Scheme = "Bearer"
+        In = ParameterLocation.Header,
+        Description = "JWT Authorization header using the Bearer scheme. \r\n\r\n Enter your token in the text input below.\r\n\r\nExample: \"12345abcdef\""
     }));
 
     builder.Services.AddSwaggerGen(w =>

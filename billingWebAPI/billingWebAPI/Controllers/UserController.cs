@@ -17,19 +17,22 @@ namespace billingWebAPI.Controllers
     public class UserController : ControllerBase
     {
         private readonly billingDBContext _context;
+        private readonly ILogger<UserController> _logger;
 
-        public UserController(billingDBContext context)
+        public UserController(billingDBContext context, ILogger<UserController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         [Authorize]
         [HttpPost("addUser")]
 
-        public async Task<ActionResult<UsersTb>> CreateUser([FromBody] UsersTb user)
+        public async Task<ActionResult<UsersTb>> CreateUser([FromBody] User user)
         {
             if(user == null) 
             {
+                _logger.LogWarning("Invalid user data. Please provide valid information.");
                 return BadRequest("Invalid Entry");
             }
 
@@ -45,16 +48,18 @@ namespace billingWebAPI.Controllers
 
             await _context.Database.ExecuteSqlRawAsync("EXEC InsertUser @username, @email, @password, @phone_number, @user_type", parameters);
 
-            var insertedUser = await _context.UsersTbs.SingleOrDefaultAsync(u => u.Username == user.Username && u.Email == user.Email);
+            var insertedUser = await _context.UsersTbs.FirstOrDefaultAsync(u => u.Username == user.Username && u.Email == user.Email);
 
             if(insertedUser == null)
             {
+                _logger.LogError("Failed to retrieve inserted user");
                 return BadRequest("Failed To retrieve inserted User");
             }
-
+            _logger.LogInformation($"User '{user.Username}' successfully created.");
             return CreatedAtAction(nameof(GetUser), new { id = insertedUser.UserId }, insertedUser);
         }
 
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<UsersTb>> GetUser(int id)
         {   
@@ -62,6 +67,7 @@ namespace billingWebAPI.Controllers
 
             if (user == null)
             {
+                _logger.LogWarning($"User with ID {id} not found");
                 return NotFound();
             }
 

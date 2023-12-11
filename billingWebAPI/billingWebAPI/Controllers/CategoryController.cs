@@ -1,4 +1,5 @@
 ﻿using billingWebAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
@@ -17,6 +18,7 @@ namespace billingWebAPI.Controllers
             _context = context; 
         }
 
+        [Authorize]
         [HttpPost("addCategory")]
 
         public async Task<ActionResult<CategoryTb>> CreateCategory([FromBody] CategoryTb category)
@@ -49,6 +51,7 @@ namespace billingWebAPI.Controllers
             return CreatedAtAction(nameof(GetCategory), new {categoryId = insertedCategory.CategoryId}, insertedCategory);
         }
 
+        [Authorize]
         [HttpGet("{categoryId}")]
 
         public async Task<ActionResult<CategoryTb>> GetCategory(int categoryId)

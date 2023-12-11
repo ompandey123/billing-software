@@ -1,4 +1,5 @@
 ﻿using billingWebAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
@@ -17,6 +18,7 @@ namespace billingWebAPI.Controllers
             _context = context;
         }
 
+        [Authorize]
         [HttpPost("addProduct")]
 
         public async Task<ActionResult<ProductTb>> createProduct([FromBody] ProductTb product)
@@ -51,6 +53,7 @@ namespace billingWebAPI.Controllers
             return CreatedAtAction(nameof(GetProduct), new { productId = insertedProduct.ProductId }, insertedProduct);
         }
 
+        [Authorize]
         [HttpGet("{productId}")]
 
         public async Task<ActionResult<ProductTb>> GetProduct(int productId)

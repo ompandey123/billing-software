@@ -1,4 +1,5 @@
 ﻿using billingWebAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
@@ -17,6 +18,7 @@ namespace billingWebAPI.Controllers
             _context = context;
         }
 
+        [Authorize]
         [HttpPost("addCompany")]
         public async Task<ActionResult<CompanyTb>> createCompany([FromBody]CompanyTb company)
         {
@@ -46,6 +48,7 @@ namespace billingWebAPI.Controllers
             return CreatedAtAction(nameof(GetCompany), new { companyId = insertedCompany.CompanyId }, insertedCompany);
         }
 
+        [Authorize]
         [HttpGet("{companyId}")]
 
         public async Task<ActionResult<CompanyTb>> GetCompany(int companyId)

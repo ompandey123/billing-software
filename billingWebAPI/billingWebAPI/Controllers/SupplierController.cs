@@ -1,4 +1,5 @@
 ﻿using billingWebAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
@@ -17,6 +18,7 @@ namespace billingWebAPI.Controllers
             _context = context;
         }
 
+        [Authorize]
         [HttpPost("addSupplier")]
         public async Task<ActionResult<SupplierTb>> CreateSupplier([FromBody] SupplierTb supplier)
         {
@@ -46,6 +48,7 @@ namespace billingWebAPI.Controllers
 
         }
 
+        [Authorize]
         [HttpGet("{supplierId}")]
 
         public async Task<ActionResult<ProductTb>> GetSupplier(int supplierId)

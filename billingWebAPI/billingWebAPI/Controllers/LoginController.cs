@@ -91,7 +91,7 @@ namespace billingWebAPI.Controllers
             if (auntenticateUser != null)
             {
                 var token = GenerateToken(auntenticateUser);
-                response = Ok(new { Token = token });
+                response = Ok(new { Token = token, auntenticateUser.UserId });
                 _logger.LogInformation($"User '{user.Email}' successfully logged in.");
             }
             else

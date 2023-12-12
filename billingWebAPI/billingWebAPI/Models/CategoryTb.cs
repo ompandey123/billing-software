@@ -12,13 +12,14 @@ namespace billingWebAPI.Models
         }
 
         public int CategoryId { get; set; }
-        public int? CompanyId { get; set; }
-        public string? CategoryName { get; set; }
-        public string? CommonName { get; set; }
-        public decimal? Sgst { get; set; }
-        public decimal? Cgst { get; set; }
-        public decimal? Igst { get; set; }
-        public decimal? Pgst { get; set; }
+        public int CompanyId { get; set; }
+        public string CategoryName { get; set; }
+        public string CommonName { get; set; }
+        public int Sgst { get; set; }
+        public int Cgst { get; set; }
+        public int Igst { get; set; }
+        public int Pgst { get; set; }
+        public int Totaltax { get; set; }
 
         [JsonIgnore]
         public virtual CompanyTb? Company { get; set; }

@@ -18,7 +18,6 @@ namespace billingWebAPI.Controllers
             _context = context;
         }
 
-        [Authorize]
         [HttpPost("addProduct")]
 
         public async Task<ActionResult<ProductTb>> createProduct([FromBody] ProductTb product)
@@ -53,7 +52,6 @@ namespace billingWebAPI.Controllers
             return CreatedAtAction(nameof(GetProduct), new { productId = insertedProduct.ProductId }, insertedProduct);
         }
 
-        [Authorize]
         [HttpGet("{productId}")]
 
         public async Task<ActionResult<ProductTb>> GetProduct(int productId)
@@ -66,6 +64,34 @@ namespace billingWebAPI.Controllers
             }
 
             return Ok(product);
+        }
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<ProductTb>>> GetProducts()
+        {
+            var products = await _context.ProductTbs.ToListAsync();
+
+            if (products == null || !products.Any())
+            {
+                return NotFound();
+            }
+
+            return Ok(products);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteProduct(int id)
+        {
+            var product = await _context.ProductTbs.FindAsync(id);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            _context.ProductTbs.Remove(product);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
         }
     }
 }

@@ -15,10 +15,9 @@ namespace billingWebAPI.Controllers
 
         public CategoryController(billingDBContext context)
         {
-            _context = context; 
+            _context = context;
         }
 
-        [Authorize]
         [HttpPost("addCategory")]
 
         public async Task<ActionResult<CategoryTb>> CreateCategory([FromBody] CategoryTb category)
@@ -43,15 +42,14 @@ namespace billingWebAPI.Controllers
 
             var insertedCategory = await _context.CategoryTbs.SingleOrDefaultAsync(c => c.CategoryName == category.CategoryName && c.CommonName == category.CommonName);
 
-            if(insertedCategory == null)
+            if (insertedCategory == null)
             {
                 return BadRequest("Cannot fetch");
             }
 
-            return CreatedAtAction(nameof(GetCategory), new {categoryId = insertedCategory.CategoryId}, insertedCategory);
+            return CreatedAtAction(nameof(GetCategory), new { categoryId = insertedCategory.CategoryId }, insertedCategory);
         }
 
-        [Authorize]
         [HttpGet("{categoryId}")]
 
         public async Task<ActionResult<CategoryTb>> GetCategory(int categoryId)
@@ -66,5 +64,33 @@ namespace billingWebAPI.Controllers
             return Ok(category);
         }
 
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<ProductTb>>> GetCategories()
+        {
+            var categories = await _context.CategoryTbs.ToListAsync();
+
+            if (categories == null || !categories.Any())
+            {
+                return NotFound();
+            }
+
+            return Ok(categories);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteCategory(int id)
+        {
+            var category = await _context.CategoryTbs.FindAsync(id);
+
+            if(category == null)
+            {
+                return NotFound();  
+            }
+             
+            _context.CategoryTbs.Remove(category);
+            await   _context.SaveChangesAsync();
+
+            return NoContent();
+        }
     }
 }

@@ -72,8 +72,6 @@ namespace billingWebAPI.Models
                     .IsUnicode(false)
                     .HasColumnName("product_price_on");
 
-                entity.Property(e => e.PurchaseId).HasColumnName("purchase_id");
-
                 entity.Property(e => e.Tax)
                     .HasMaxLength(50)
                     .IsUnicode(false)
@@ -162,6 +160,8 @@ namespace billingWebAPI.Models
                 entity.Property(e => e.Pgst).HasColumnName("pgst");
 
                 entity.Property(e => e.Sgst).HasColumnName("sgst");
+
+                entity.Property(e => e.Totaltax).HasColumnName("total_tax");
 
                 entity.HasOne(d => d.Company)
                     .WithMany(p => p.CategoryTbs)

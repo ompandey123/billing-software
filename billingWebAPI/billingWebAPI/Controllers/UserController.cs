@@ -11,7 +11,6 @@ using System.Data;
 
 namespace billingWebAPI.Controllers
 {
-    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
@@ -25,10 +24,8 @@ namespace billingWebAPI.Controllers
             _logger = logger;
         }
 
-        [Authorize]
-        [HttpPost("addUser")]
-
-        public async Task<ActionResult<UsersTb>> CreateUser([FromBody] User user)
+        [HttpPost("Register")]
+        public async Task<ActionResult<UsersTb>> CreateUser([FromBody] UsersTb user)
         {
             if(user == null) 
             {
@@ -59,7 +56,6 @@ namespace billingWebAPI.Controllers
             return CreatedAtAction(nameof(GetUser), new { id = insertedUser.UserId }, insertedUser);
         }
 
-        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<UsersTb>> GetUser(int id)
         {   
@@ -72,6 +68,19 @@ namespace billingWebAPI.Controllers
             }
 
             return Ok(user);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<UsersTb>>> GetUsers()
+        {
+            var users = await _context.UsersTbs.ToListAsync();
+
+            if (users == null || !users.Any())
+            {
+                return NotFound();
+            }
+
+            return Ok(users);
         }
     }
 }

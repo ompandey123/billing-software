@@ -18,7 +18,6 @@ namespace billingWebAPI.Controllers
             _context = context;
         }
 
-        [Authorize]
         [HttpPost("addSupplier")]
         public async Task<ActionResult<SupplierTb>> CreateSupplier([FromBody] SupplierTb supplier)
         {
@@ -48,7 +47,6 @@ namespace billingWebAPI.Controllers
 
         }
 
-        [Authorize]
         [HttpGet("{supplierId}")]
 
         public async Task<ActionResult<ProductTb>> GetSupplier(int supplierId)

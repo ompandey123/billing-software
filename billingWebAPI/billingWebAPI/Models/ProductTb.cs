@@ -20,7 +20,7 @@ namespace billingWebAPI.Models
         public string? ProductName { get; set; }
         public string? ProductBrand { get; set; }
         public string? ProductMeasurement { get; set; }
-        public string? ProductPriceOn { get; set; }
+        public int ProductPriceOn { get; set; }
         public string? ProductPackaging { get; set; }
         public string? ProductQuantity { get; set; }
 

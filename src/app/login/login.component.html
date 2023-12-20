@@ -1,0 +1,36 @@
+<div class="bouncingball"></div>
+<mat-card [@slideLeftAnimation]="animationState" (@slideLeftAnimation.done)="onAnimationDone()">
+    <mat-card-header>
+      <mat-card-title>Login</mat-card-title>
+      <!-- <div class="logo-container">
+        <img src="assets/logo-color.png" alt="Logo" class="logo">
+      </div> -->
+      
+    </mat-card-header>
+    <mat-card-content>
+
+      <form>
+        <mat-form-field>
+          <input matInput placeholder="Username" name="username" [(ngModel)]="username" required>
+          <mat-error class="mat-error" *ngIf="form.controls['username'].hasError('required')">
+           *required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="password" placeholder="Password" name="password"[(ngModel)]="password" required>
+          <mat-error class="mat-error" *ngIf="form.controls['password'].hasError('required')">
+            *required
+          </mat-error>
+  
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit" (click)="startAnimation()">Login</button>
+        
+      </form>
+      <div class="registration-option">
+        <span>Don't have an account?</span>
+        <a routerLink="/register">Register here</a>
+      </div>
+    </mat-card-content>
+    
+  </mat-card>
+  

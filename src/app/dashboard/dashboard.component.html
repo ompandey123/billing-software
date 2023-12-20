@@ -1,0 +1,41 @@
+<!-- dashboard.component.html -->
+<mat-card class="dashboard-card">
+  <mat-card-header class="dashboard-header">
+
+    <img src="../../assets/logo-no-background.png" alt= "Logo" class="dashboard-logo" />
+    <mat-card-title class="dashboard-title">Dashboard</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div>
+      <button mat-raised-button color="primary" (click)="showNewOrderForm = true">New Order</button>
+      <button mat-raised-button color="primary" (click)="showNewOrderForm = false">Previous Orders</button>
+      <button mat-raised-button color="primary" (click)="navigateToProducts()">Products</button>
+    </div>
+
+    <div *ngIf="showNewOrderForm">
+      <h2>New Order</h2>
+      <form (submit)="submitNewOrderForm()">
+        <mat-form-field>
+          <input matInput placeholder="Product" [(ngModel)]="newOrder.product" name="product" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="number" placeholder="Quantity" [(ngModel)]="newOrder.quantity" name="quantity" required>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="number" placeholder="Price per Quantity" [(ngModel)]="newOrder.pricePerQuantity" name="pricePerQuantity" required>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit">Add Order</button>
+      </form>
+      <p>Total Amount (After Tax): {{ totalAmount }}</p>
+    </div>
+
+    <div *ngIf="!showNewOrderForm">
+      <!-- Display previous orders and total revenue -->
+      <h2>Previous Orders</h2>
+      <!-- Add code to display previous orders here -->
+
+      <h2>Total Revenue</h2>
+      <p>Total Revenue: {{ totalRevenue }}</p>
+    </div>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,63 @@
+/*/*registration.component.css */
+
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: url("../../assets/billing360-high-resolution-logo-2.png") center; /* Replace with your image path */
+ background-color: rgba(255, 255, 255, 0);  /*50% transparency white  */
+padding-left: 1015px;
+}
+.logo-container {
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  
+  .logo {
+    max-width: 100%;
+     height: auto;
+     max-height: 50px; 
+  }
+  
+  mat-card {
+    width: 450px;
+    
+  height: 500px; 
+    margin: 0 auto;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    backdrop-filter: blur(5px);
+   background: rgba(255, 255, 255, 0.279);
+  }
+  mat-card-header {
+    text-align: center;
+  }
+  
+  mat-card-title {
+    margin-left: 150px; /* Adjust the left margin as needed */
+    display: inline-block; /*Ensures it's centered within the card header */
+  }
+  mat-card:hover {
+    transform: scale(1.05);
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  mat-form-field {
+    margin-bottom: 16px;
+  }
+  
+  button {
+    align-self: flex-end;
+  }
+  .mat-error {
+    color: red;
+  }
+
+
+  

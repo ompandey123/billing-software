@@ -12,7 +12,7 @@ namespace billingWebAPI.Models
             //ProductRetailerMasterTbs = new HashSet<ProductRetailerMasterTb>();
             //ProductSupplierMasters = new HashSet<ProductSupplierMaster>();
         }
-
+            
         public int ProductId { get; set; }
         public int? CompanyId { get; set; }
         public int? CategoryId { get; set; }

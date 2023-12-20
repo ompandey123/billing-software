@@ -1,0 +1,51 @@
+<mat-card class="dashboard-card">
+  <mat-card-header class="dashboard-header">
+    <img src="../../assets/logo-no-background.png" alt="Logo" class="dashboard-logo" />
+    <mat-card-title class="dashboard-title">Dashboard</mat-card-title>
+  </mat-card-header><br><br>
+  <mat-card-content>
+    <div>
+      <!-- Links for navigation -->
+      <a mat-raised-button routerLink="/products" style="text-decoration: none; background-color: black; width: 200px;">Products</a><br><br><br>
+      <a mat-raised-button color="accent" routerLink="/categories" style="text-decoration: none; background-color: black; width: 200px;">Categories</a><br><br><br>
+      <a mat-raised-button color="accent" routerLink="/bill" style="text-decoration: none; background-color: black; width: 200px;">Generate Bill</a><br><br><br>
+      <a mat-raised-button color="accent" routerLink="/contact" style="text-decoration: none; background-color: black; width: 200px;">Contact Us</a><br><br><br>
+      <a mat-raised-button color="accent" routerLink="/logout" style="text-decoration: none; background-color: black; width: 200px;">Logout</a><br><br><br>
+    </div>
+  </mat-card-content>
+</mat-card>
+<mat-card class="dashboardInfo">
+  <div class="info-section">
+    <div class="info-item" *ngFor="let p of products">
+      <div class="product-details">
+        <div class="product-image">
+          <!-- Add your static image source here -->
+          <img src="../../assets/pexels-aleksandar-pasaric-3423860.jpg" alt="{{ p.productName }}" />
+        </div>
+        <div class="product-info">
+          <h1 style="font-size: 50px;">{{ p.productName }} Details</h1>
+          <div class="detail-item">
+            <h2 style="color: brown;">Product Name:</h2>
+            <p style="font-weight: bold; color: black; font-size: x-large;">{{ p.productName }}</p>
+          </div>
+          <div class="detail-item">
+            <h2 style="color: brown;">Brand:</h2>
+            <p style="font-weight: bold; color: black; font-size: x-large;">{{ p.productBrand }} Brand</p>
+          </div>
+          <div class="detail-item">
+            <h2 style="color: brown;">Category:</h2>
+            <p style="font-weight: bold; color: black; font-size: x-large;">{{ p.categoryName }} Category</p>
+          </div>
+          <div class="detail-item">
+            <h2 style="color: brown;">Price:</h2>
+            <p style="font-weight: bold; color: black; font-size: x-large;">{{ p.productPriceOn }} Rupees</p>
+          </div>
+          <div class="detail-item">
+            <h2 style="color: brown;">Measurement:</h2>
+            <p style="font-weight: bold; color: black; font-size: x-large;">In {{ p.productMeasurement }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-card>

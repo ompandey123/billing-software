@@ -64,10 +64,12 @@ namespace billingWebAPI.Controllers
             return Ok(category);
         }
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<ProductTb>>> GetCategories()
+        [HttpGet("getCompany/{companyId}")]
+        public async Task<ActionResult<IEnumerable<CategoryTb>>> GetCategories(int companyId)
         {
-            var categories = await _context.CategoryTbs.ToListAsync();
+            var categories = await _context.CategoryTbs
+                             .Where(c => c.CompanyId == companyId)
+                             .ToListAsync();
 
             if (categories == null || !categories.Any())
             {
@@ -92,5 +94,25 @@ namespace billingWebAPI.Controllers
 
             return NoContent();
         }
+        [HttpGet("GetAllCategories")]
+        public async Task<ActionResult<IEnumerable<CategoryTb>>> getAllCategories()
+        {
+            var categories = await _context.CategoryTbs.ToListAsync();
+
+            if (categories == null || !categories.Any())
+            {
+                return NotFound();
+            }
+
+            return Ok(categories);
+        }
+        [HttpGet("count")]
+        public async Task<ActionResult<int>> GetCategoryCount()
+        {
+            var productCount = await _context.CategoryTbs.CountAsync();
+
+            return Ok(productCount);
+        }
+
     }
 }

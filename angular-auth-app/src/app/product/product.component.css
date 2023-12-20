@@ -1,0 +1,60 @@
+
+:host {
+  display: flex;
+  height: 100vh;
+}
+.dashboard-title {
+  font-size: 24px; /* Adjust the size as needed */
+  font-weight: bolder;
+  margin-bottom: 20px;
+}
+.dashboard-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.dashboard-logo {
+  width: 200px; /* Adjust the width as needed */
+  height: auto;
+  margin-bottom: 10px; /* Adjust the margin as needed */
+}
+
+
+.dashboard-card {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 300px; /* Adjust the width as needed */
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* background: url('path/to/your/image.jpg') center/cover no-repeat; Add your image path */
+  color: white;
+  background-color: #1976D2; 
+}
+
+.dashboard-card h2 {
+  color: white;
+}
+
+.formProduct{
+  margin-left: 350px;
+  width: 75%; /* Adjust the width as needed */
+}
+
+/* Add this to your component's CSS or to your global styles */
+.mat-elevation-z8 {
+  border-collapse: collapse;
+  width: 80%; /* Adjust the width as needed */
+  margin: auto; /* Center the table */
+}
+
+.mat-elevation-z8 th, .mat-elevation-z8 td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+.mat-elevation-z8 th {
+  background-color: #f2f2f2;
+}

@@ -60,5 +60,17 @@ namespace billingWebAPI.Controllers
 
             return Ok(company);
         }
+        [HttpGet("GetAllCompanies")]
+        public async Task<ActionResult<IEnumerable<CompanyTb>>> getAllCategories()
+        {
+            var categories = await _context.CompanyTbs.ToListAsync();
+
+            if (categories == null || !categories.Any())
+            {
+                return NotFound();
+            }
+
+            return Ok(categories);
+        }
     }
 }

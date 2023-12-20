@@ -1,0 +1,54 @@
+<!-- dashboard.component.html -->
+<mat-card class="dashboard-card">
+  <mat-card-header class="dashboard-header">
+    <img src="../../assets/logo-no-background.png" alt="Logo" class="dashboard-logo" />
+    <mat-card-title class="dashboard-title">Dashboard</mat-card-title>
+  </mat-card-header><br><br>
+  <mat-card-content>
+    <div>
+      <!-- Links for navigation -->
+      <a mat-raised-button routerLink="/products" style="text-decoration: none; background-color: black; width: 200px;">Products</a><br><br><br>
+      <a mat-raised-button color="accent" routerLink="/categories" style="text-decoration: none; background-color: black; width: 200px;">Categories</a><br><br><br>
+      <a mat-raised-button color="accent" routerLink="/bill" style="text-decoration: none; background-color: black; width: 200px;">Generate Bill</a><br><br><br>
+      <a mat-raised-button color="accent" routerLink="/contact" style="text-decoration: none; background-color: black; width: 200px;">Contact Us</a><br><br><br>
+      <a mat-raised-button color="accent" routerLink="/logout" style="text-decoration: none; background-color: black; width: 200px;">Logout</a><br><br><br>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<!-- New Form -->
+<mat-card class="formProduct">
+  <mat-card-content>
+    <p style="font-size: 50px; font-weight:500;">Products</p>
+    <table mat-table class="mat-elevation-z8" style="width: 100%;">
+      <thead>
+        <!-- Position Column -->
+        <tr>
+          <!-- Add more headers as needed -->
+          <th> Product ID </th>
+          <th> Product Brand </th>
+          <th> Product Name </th>
+          <th> Product Price </th>
+          <th> Action </th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Static Data -->
+        <tr *ngFor="let item of products">
+          <td> {{item.productId}} </td>
+          <!-- Add more data rows as needed -->
+          <td> {{item.productBrand}} </td>
+          <td> {{item.productName}} </td>
+          <td> {{item.productPriceOn}} </td>
+          <!-- <td><button mat-button color="primary" style="background-color: blueviolet; color: white;">View Product</button></td> -->
+          <!-- <td><a mat-raised-button color="accent" routerLink="/productDetails" style="background-color: blueviolet; color: white; text-decoration: none;">View Product</a></td> -->
+          <td><button mat-raised-button color="accent" routerLink="/productDetails" style="background-color: blueviolet; color: white; text-decoration: none;" (click)="productDetails(item.productId ?? 0)">View Details</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </mat-card-content>
+</mat-card>
+
+<div class="main-content">
+  <!-- Main content goes here -->
+</div>

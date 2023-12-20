@@ -93,6 +93,13 @@ namespace billingWebAPI.Controllers
 
             return NoContent();
         }
+        [HttpGet("count")]
+        public async Task<ActionResult<int>> GetProductCount()
+        {
+            var productCount = await _context.ProductTbs.CountAsync();
+
+            return Ok(productCount);
+        }
     }
 }
     

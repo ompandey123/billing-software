@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace billingWebAPI.Models
 {
@@ -11,6 +12,7 @@ namespace billingWebAPI.Models
         public DateTime? EndDate { get; set; }
         public bool? IsClosed { get; set; }
 
+        [JsonIgnore]
         public virtual CompanyTb? Company { get; set; }
     }
 }

@@ -16,6 +16,7 @@ namespace billingWebAPI.Models
         {
         }
 
+        public virtual DbSet<BillTb> BillTbs { get; set; } = null!;
         public virtual DbSet<BillingDetailTb> BillingDetailTbs { get; set; } = null!;
         public virtual DbSet<BillingMasterTb> BillingMasterTbs { get; set; } = null!;
         public virtual DbSet<CategoryTb> CategoryTbs { get; set; } = null!;
@@ -34,13 +35,37 @@ namespace billingWebAPI.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-//warningTo protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
                 optionsBuilder.UseSqlServer("Data Source=DESKTOP-FUGQNF4;Initial Catalog=billingDB;Integrated Security=True;Trusted_Connection=True;");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<BillTb>(entity =>
+            {
+                entity.HasKey(e => e.BillId);
+
+                entity.ToTable("BillTb");
+
+                entity.Property(e => e.BillId).HasColumnName("bill_id");
+
+                entity.Property(e => e.GrandTotal).HasColumnName("grand_total");
+
+                entity.Property(e => e.ProductId).HasColumnName("product_id");
+
+                entity.Property(e => e.Tax).HasColumnName("tax");
+
+                entity.Property(e => e.TotalCost).HasColumnName("total_cost");
+
+                entity.Property(e => e.Quantity).HasColumnName("quantity");
+
+                entity.Property(e => e.Username)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("username");
+            });
+
             modelBuilder.Entity<BillingDetailTb>(entity =>
             {
                 entity.HasKey(e => e.BillingDetailId)
@@ -72,10 +97,7 @@ namespace billingWebAPI.Models
                     .IsUnicode(false)
                     .HasColumnName("product_price_on");
 
-                entity.Property(e => e.Tax)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("tax");
+                entity.Property(e => e.Tax).HasColumnName("tax");
 
                 entity.Property(e => e.TotalCost).HasColumnName("total_cost");
 
@@ -161,7 +183,7 @@ namespace billingWebAPI.Models
 
                 entity.Property(e => e.Sgst).HasColumnName("sgst");
 
-                entity.Property(e => e.Totaltax).HasColumnName("total_tax");
+                entity.Property(e => e.TotalTax).HasColumnName("total_tax");
 
                 entity.HasOne(d => d.Company)
                     .WithMany(p => p.CategoryTbs)
@@ -385,10 +407,7 @@ namespace billingWebAPI.Models
                     .IsUnicode(false)
                     .HasColumnName("product_packaging");
 
-                entity.Property(e => e.ProductPriceOn)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasColumnName("product_price_on");
+                entity.Property(e => e.ProductPriceOn).HasColumnName("product_price_on");
 
                 entity.Property(e => e.ProductQuantity)
                     .HasMaxLength(50)

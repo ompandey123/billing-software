@@ -25,19 +25,14 @@ namespace billingWebAPI.Models
 
         [JsonIgnore]
         public virtual ICollection<BillingDetailTb>? BillingDetailTbs { get; set; }
-
         [JsonIgnore]
         public virtual ICollection<CategoryTb>? CategoryTbs { get; set; }
-
         [JsonIgnore]
         public virtual ICollection<CompanyUserTb>? CompanyUserTbs { get; set; }
-
         [JsonIgnore]
         public virtual ICollection<FinancialYearTb>? FinancialYearTbs { get; set; }
-
         [JsonIgnore]
         public virtual ICollection<GstTb>? GstTbs { get; set; }
-
         [JsonIgnore]
         public virtual ICollection<ProductTb>? ProductTbs { get; set; }
     }

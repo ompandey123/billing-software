@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json.Serialization; // Add this using statement
-
+using System.Text.Json.Serialization;
 
 namespace billingWebAPI.Models
 {
@@ -22,13 +20,11 @@ namespace billingWebAPI.Models
         public string? Contact { get; set; }
         public string? UserType { get; set; }
 
-        [JsonIgnore] // This property will be ignored in Swagger documentation
+        [JsonIgnore]
         public virtual ICollection<BillingDetailTb>? BillingDetailTbs { get; set; }
-
-        [JsonIgnore] // This property will be ignored in Swagger documentation
+        [JsonIgnore]
         public virtual ICollection<ProductRetailerMasterTb>? ProductRetailerMasterTbs { get; set; }
-
-        [JsonIgnore] // This property will be ignored in Swagger documentation
+        [JsonIgnore]
         public virtual ICollection<ProductTb>? ProductTbs { get; set; }
     }
 }

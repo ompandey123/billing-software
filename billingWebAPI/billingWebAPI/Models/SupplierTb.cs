@@ -17,7 +17,6 @@ namespace billingWebAPI.Models
         public string? Contact { get; set; }
 
         [JsonIgnore]
-
-        public virtual ICollection<ProductSupplierMaster>? ProductSupplierMasters { get; set; }
+        public virtual ICollection<ProductSupplierMaster> ProductSupplierMasters { get; set; }
     }
 }

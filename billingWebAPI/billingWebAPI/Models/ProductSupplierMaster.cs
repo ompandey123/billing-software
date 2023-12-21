@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace billingWebAPI.Models
 {
@@ -9,7 +10,9 @@ namespace billingWebAPI.Models
         public int? SupplierId { get; set; }
         public int? ProductId { get; set; }
 
+        [JsonIgnore]
         public virtual ProductTb? Product { get; set; }
+        [JsonIgnore]
         public virtual SupplierTb? Supplier { get; set; }
     }
 }

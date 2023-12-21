@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace billingWebAPI.Models
 {
@@ -13,6 +14,7 @@ namespace billingWebAPI.Models
         public int? Igst { get; set; }
         public int? Pgst { get; set; }
 
+        [JsonIgnore]
         public virtual CompanyTb? Company { get; set; }
     }
 }

@@ -58,6 +58,11 @@ private displayCategoryName = 'https://localhost:7035/api/Category';
   const url = `${this.displayCategoryName}/${id}`;
   return this.http.get<Category>(url);
  }
+
+ private getCategoryUrl = 'https://localhost:7035/api/Category/GetAllCategories'
+ getAllCats():Observable<Category[]>{
+  return this.http.get<Category[]>(`${this.getCategoryUrl}`);
+ }
   //All Category and Category Related API's
 }
 

@@ -13,9 +13,9 @@ namespace billingWebAPI.Models
         public int UserId { get; set; }
         public string? ProductMeasurement { get; set; }
         public int ProductPriceOn { get; set; }
-        public double TotalCost { get; set; }
-        public double Tax { get; set; }
-        public double GrandTotal { get; set; }
+        public decimal TotalCost { get; set; }
+        public int Tax { get; set; }
+        public decimal GrandTotal { get; set; }
         public DateTime BillingDate { get; set; }
 
         [JsonIgnore]

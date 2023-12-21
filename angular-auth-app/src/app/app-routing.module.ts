@@ -5,6 +5,8 @@ import { RegistrationComponent } from './registration/registration.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProductComponent } from './product/product.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { CategoryComponent } from './category/category.component';
+import { ContactusComponent } from './contactus/contactus.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -12,7 +14,9 @@ const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
   {path:  'products', component:ProductComponent},
-  {path: 'productDetails/:id', component: ProductDetailsComponent}
+  {path: 'productDetails/:id', component: ProductDetailsComponent},
+  {path: 'categories', component: CategoryComponent},
+  {path:  'contact', component: ContactusComponent}
 ];
 
 

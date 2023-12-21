@@ -1,9 +1,9 @@
 <!-- dashboard.component.html -->
 <mat-card class="dashboard-card">
-  <a href="/dashboard" style="color: white; text-decoration: none;"><mat-card-header class="dashboard-header">
-    <img src="../../assets/logo-no-background.png" alt= "Logo" class="dashboard-logo" />
+  <mat-card-header class="dashboard-header">
+    <img src="../../assets/logo-no-background.png" alt="Logo" class="dashboard-logo" />
     <!-- <mat-card-title class="dashboard-title">Dashboard</mat-card-title> -->
-  </mat-card-header></a><br><br>
+  </mat-card-header><br><br>
   <mat-card-content>
     <div>
       <!-- Links for navigation -->
@@ -19,30 +19,36 @@
 <!-- New Form -->
 <mat-card class="formProduct">
   <mat-card-content>
-    <p style="font-size: 50px; font-weight:500;">Products</p>
+    <p style="font-size: 50px; font-weight:500;">Category</p>
     <table mat-table class="mat-elevation-z8" style="width: 100%;">
       <thead>
         <!-- Position Column -->
         <tr>
           <!-- Add more headers as needed -->
-          <th> Product ID </th>
-          <th> Product Brand </th>
-          <th> Product Name </th>
-          <th> Product Price </th>
-          <th> Action </th>
+          <th> Category ID </th>
+          <th> Category Name </th>
+          <th> Common Name </th>
+          <th> SGST </th>
+          <th> CGST </th>
+          <th> IGST </th>
+          <th> PGST </th>
+          <th> Total tax </th>
         </tr>
       </thead>
       <tbody>
         <!-- Static Data -->
-        <tr *ngFor="let item of products">
-          <td> {{item.productId}} </td>
+        <tr *ngFor="let cat of categories">
+          <td> {{cat.categoryId}} </td>
           <!-- Add more data rows as needed -->
-          <td> {{item.productBrand}} </td>
-          <td> {{item.productName}} </td>
-          <td> {{item.productPriceOn}} </td>
+          <td> {{cat.categoryName}} </td>
+          <td> {{cat.commonName}} </td>
+          <td> {{cat.sgst}} </td>
+          <td> {{cat.cgst}} </td>
+          <td> {{cat.igst}} </td>
+          <td> {{cat.pgst}} </td>
+          <td> {{cat.totaltax}} </td>
           <!-- <td><button mat-button color="primary" style="background-color: blueviolet; color: white;">View Product</button></td> -->
           <!-- <td><a mat-raised-button color="accent" routerLink="/productDetails" style="background-color: blueviolet; color: white; text-decoration: none;">View Product</a></td> -->
-          <td><button mat-raised-button color="accent" routerLink="/productDetails" style="background-color: blueviolet; color: white; text-decoration: none;" (click)="productDetails(item.productId ?? 0)">View Details</button></td>
         </tr>
       </tbody>
     </table>

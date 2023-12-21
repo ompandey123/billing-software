@@ -20,6 +20,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { DribbleBallComponent } from './dribble-ball/dribble-ball.component';
 import { ProductComponent } from './product/product.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { CategoryComponent } from './category/category.component';
+import { ContactusComponent } from './contactus/contactus.component';
+import { BillingComponent } from './billing/billing.component';
+import { BillingDetailComponent } from './billing-detail/billing-detail.component';
 
 
 @NgModule({
@@ -30,7 +34,11 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
     DashboardComponent,
     DribbleBallComponent,
     ProductComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+    CategoryComponent,
+    ContactusComponent,
+    BillingComponent,
+    BillingDetailComponent
   ],
   imports: [
     BrowserModule,

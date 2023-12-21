@@ -8,30 +8,30 @@
       <mat-form-field class="full-width">
         <mat-label>Username</mat-label>
         <input matInput placeholder="Username" type="text" [(ngModel)]="registrationData.username" name="username" required>
-        <mat-error class="mat-error" *ngIf="form.controls['username'].hasError('required')">*required</mat-error>
+        <mat-error class="mat-error" *ngIf="form.controls['username'].hasError('required')">*Username required</mat-error>
       </mat-form-field>
       <mat-form-field class="full-width">
         <mat-label>Email</mat-label>
         <input matInput placeholder="Email" type="text" [(ngModel)]="registrationData.email" name="email" required>
-        <mat-error class="mat-error" *ngIf="form.controls['email'].hasError('email')">Email required</mat-error>
+        <mat-error class="mat-error" *ngIf="form.controls['email'].hasError('required')">*Email required</mat-error>
       </mat-form-field>
       <mat-form-field class="full-width">
         <mat-label>Password</mat-label>
         <input matInput placeholder="Password" type="password" [(ngModel)]="registrationData.password" name="password" required>
-        <mat-error class="mat-error" *ngIf="form.controls['password'].hasError('required')">*required</mat-error>
+        <mat-error class="mat-error" *ngIf="form.controls['password'].hasError('required')">*Password required</mat-error>
       </mat-form-field>
       <mat-form-field class="full-width">
         <mat-label>Phone Number</mat-label>
         <input matInput placeholder="contact" type="text" [(ngModel)]="registrationData.contact" name="contact" required>
-        <mat-error  class="mat-error"*ngIf="form.controls['contact'].hasError('required')">*required</mat-error>
+        <mat-error  class="mat-error"*ngIf="form.controls['contact'].hasError('required')">*Contact required</mat-error>
       </mat-form-field>
       <mat-form-field class="full-width" appearance="fill">
         <mat-label>User Type</mat-label>
         <!-- <mat-select [(ngModel)]="registrationData.userType" name="userType" required class="mat-error">
           <mat-option *ngFor="let type of userTypes" [value]="type.value">{{ type.label }}</mat-option>
         </mat-select> -->
-        <input matInput placeholder="contact" type="text" [(ngModel)]="registrationData.userType" name="contact" required>
-        <mat-error class="mat-error" *ngIf="form.controls['userType'].hasError('required')">*required</mat-error>
+        <input matInput placeholder="User Type" type="text" [(ngModel)]="registrationData.userType" name="userType" required>
+        <mat-error class="mat-error" *ngIf="form.controls['userType'].hasError('required')">*User Type required</mat-error>
       </mat-form-field>
       <div class="registration-option">
         <span>Already have an account? </span>

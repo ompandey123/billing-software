@@ -1,0 +1,132 @@
+
+:host {
+  display: flex;
+  height: 100vh;
+}
+.dashboard-title {
+  font-size: 24px; /* Adjust the size as needed */
+  font-weight: bolder;
+  margin-bottom: 20px;
+}
+.dashboard-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.dashboard-logo {
+  width: 200px; /* Adjust the width as needed */
+  height: auto;
+  margin-bottom: 10px; /* Adjust the margin as needed */
+}
+
+
+.dashboard-card {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 300px; /* Adjust the width as needed */
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* background: url('path/to/your/image.jpg') center/cover no-repeat; Add your image path */
+  color: white;
+  background-color: #1976D2; 
+}
+
+.dashboard-card h2 {
+  color: white;
+}
+
+
+/* Add this to your component's CSS or to your global styles */
+.dashboardInfo {
+  background-color: #f0f0f0;
+  padding: 220px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-left: 360px;
+  width: 75%;
+}
+
+.info-section {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+  padding: 5px;
+}
+
+.info-item {
+  
+  padding: 50px;
+  /* margin-left:px; */
+  width: 75%;
+  border-radius: 8px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.cta-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+/* Style for mat-card components */
+.mat-card {
+  margin-top: 20px;
+  max-width: 300px;
+  margin-right: 20px;
+}
+
+.mat-card-title,
+.mat-card-subtitle {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.mat-card-subtitle {
+  color: #555555;
+}
+
+.mat-card-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.title{
+  margin-left: 25px;
+  margin-top: -80px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #2196F3;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0b7dda;
+}

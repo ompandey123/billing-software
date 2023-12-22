@@ -8,6 +8,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
 import { CategoryComponent } from './category/category.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { BillingComponent } from './billing/billing.component';
+import { BillingDetailComponent } from './billing-detail/billing-detail.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -18,7 +19,8 @@ const routes: Routes = [
   {path: 'productDetails/:id', component: ProductDetailsComponent},
   {path: 'categories', component: CategoryComponent},
   {path:  'contact', component: ContactusComponent},
-  {path:  'bill', component: BillingComponent}
+  {path:  'bill', component: BillingComponent},
+  {path: 'detail', component: BillingDetailComponent}
 ];
 
 

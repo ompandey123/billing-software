@@ -8,7 +8,7 @@ namespace billingWebAPI.Models
     {
         public BillingMasterTb()
         {
-            BillingDetailTbs = new HashSet<BillingDetailTb>();
+            //BillingDetailTbs = new HashSet<BillingDetailTb>();
         }
 
         public int BillingId { get; set; }
@@ -17,7 +17,7 @@ namespace billingWebAPI.Models
         public string? GstNo { get; set; }
         public DateTime? BillDate { get; set; }
         public string? CompanyName { get; set; }
-
+       
         [JsonIgnore]
         public virtual ICollection<BillingDetailTb>? BillingDetailTbs { get; set; }
     }

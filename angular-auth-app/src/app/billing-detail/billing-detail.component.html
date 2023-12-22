@@ -1,1 +1,56 @@
-<p>billing-detail works!</p>
+<!-- dashboard.component.html -->
+<mat-card class="dashboard-card">
+  <a href="/dashboard" style="color: white; text-decoration: none;"><mat-card-header class="dashboard-header">
+    <img src="../../assets/logo-no-background.png" alt= "Logo" class="dashboard-logo" />
+    <!-- <mat-card-title class="dashboard-title">Dashboard</mat-card-title> -->
+  </mat-card-header></a><br><br>
+  <mat-card-content>
+    <div>
+      <!-- <button mat-raised-button color="primary" (click)="showNewOrderForm = true">New Order</button>
+      <button mat-raised-button color="primary" (click)="showNewOrderForm = false">Previous Orders</button>
+      <button mat-raised-button color="primary" (click)="navigateToProducts()">Products</button> -->
+      <a mat-raised-button routerLink="/products" style="text-decoration: none; background-color: black; width: 200px;">Products</a><br><br><br>
+      <a mat-raised-button color="accent" routerLink="/categories" style="text-decoration: none; background-color: black; width: 200px;">Categories</a><br><br><br>
+      <a mat-raised-button color="accent" routerLink="/bill" style="text-decoration: none; background-color: black; width: 200px;">Generate Bill</a><br><br><br>
+      <a mat-raised-button color="accent" routerLink="/contact" style="text-decoration: none; background-color: black; width: 200px;">Contact Us</a><br><br><br>
+      <a mat-raised-button color="accent" (click)="logout()" style="text-decoration: none; background-color: black; width: 200px;">Logout</a><br><br><br>
+    </div>
+
+    
+  </mat-card-content>
+</mat-card>
+<mat-card class="formProduct">
+  <mat-card-content>
+    <p style="font-size: 50px; font-weight:500;">Your Bills {{localUsername}}</p>
+    <table mat-table class="mat-elevation-z8" style="width: 100%;">
+      <thead>
+        <!-- Position Column -->
+        <tr>
+          <!-- Add more headers as needed -->
+          <th> Bill Id </th>
+          <th> Username </th>
+          <th> Product Name </th>
+          <th> Quantity </th>
+          <th> Tax </th>
+          <th> Grand Total </th>
+          <th> Bill Date </th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Static Data -->
+        <tr *ngFor="let b of bills">
+          <td>{{b.billId}}</td>
+          <td>{{b.username}}</td>
+          <td>{{b.productName}}</td>
+          <td>{{b.quantity}}</td>
+          <td>{{b.tax}} %</td>
+          <td>{{b.grandTotal}}</td>
+          <td>{{b.billDate}}</td>
+          <!-- <td><button mat-button color="primary" style="background-color: blueviolet; color: white;">View Product</button></td> -->
+          <!-- <td><a mat-raised-button color="accent" routerLink="/productDetails" style="background-color: blueviolet; color: white; text-decoration: none;">View Product</a></td> -->
+        </tr>
+      </tbody>
+    </table>
+  </mat-card-content>
+</mat-card>
+

@@ -13,7 +13,7 @@
       <a mat-raised-button color="accent" routerLink="/categories" style="text-decoration: none; background-color: black; width: 200px;">Categories</a><br><br><br>
       <a mat-raised-button color="accent" routerLink="/bill" style="text-decoration: none; background-color: black; width: 200px;">Generate Bill</a><br><br><br>
       <a mat-raised-button color="accent" routerLink="/contact" style="text-decoration: none; background-color: black; width: 200px;">Contact Us</a><br><br><br>
-      <a mat-raised-button color="accent" routerLink="/logout" style="text-decoration: none; background-color: black; width: 200px;">Logout</a><br><br><br>
+      <a mat-raised-button color="accent" (click)="logout()" style="text-decoration: none; background-color: black; width: 200px;">Logout</a><br><br><br>
     </div>
 
     
@@ -24,29 +24,27 @@
     <h2 class="title">Generate New Bill</h2>
     <div class="info-section">
       <div class="info-item">
-        <form>
+        <form (submit)="add()">
           <div class="form-group">
             <label for="productName">Select Product</label>
-            <select name="productName" id="productName">
+            <select name="selectedProduct" id="selectedProduct" [(ngModel)]="selectedProduct">
               <option value="none" selected disabled hidden>Please select a product</option>
-              <option value="Product 1">Product 1</option>
+              <option *ngFor="let p of products" value="{{p.productId}}">{{p.productName}}</option>
             </select>
           </div>
           <div class="form-group">
             <label for="quantity">Enter The Quantity</label>
-            <select name="quantity" id="quantity">
-              <option value="none" selected disabled hidden>Select the Quantity</option>
+            <select name="quantity" id="quantity" [(ngModel)]="selectedQuantity" (ngModelChange)="updateTaxOptions()">
+              <option value="none" selected disabled hidden>Please select a quantity</option>
               <option value="10">10</option>
-              <option value="10">20</option>
-              <option value="10">30</option>
-            </select>
+              <option value="20">20</option>
+              <option value="30">30</option>
+            </select>            
+            
           </div>
           <div class="form-group">
-            <label for="name">GST on Selected Product</label>
-            <select name="tax" id="tax">
-              <option value="none" selected disabled hidden>Your GST</option>
-              <option value="Product 1">Your Tax</option>
-            </select>
+            <label for="tax">GST on Selected Product</label>
+            <input type="text" name="tax" id="tax" [(ngModel)]="selectedTax" readonly>
           </div>
           <!-- <div class="form-group">
             <label for="message">Your Message:</label>

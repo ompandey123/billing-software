@@ -9,7 +9,6 @@ namespace billingWebAPI.Models
         public int ProductSupplierId { get; set; }
         public int? SupplierId { get; set; }
         public int? ProductId { get; set; }
-
         [JsonIgnore]
         public virtual ProductTb? Product { get; set; }
         [JsonIgnore]

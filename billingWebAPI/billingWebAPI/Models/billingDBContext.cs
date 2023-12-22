@@ -54,16 +54,23 @@ namespace billingWebAPI.Models
 
                 entity.Property(e => e.ProductId).HasColumnName("product_id");
 
+                entity.Property(e => e.Quantity).HasColumnName("quantity");
+
                 entity.Property(e => e.Tax).HasColumnName("tax");
 
                 entity.Property(e => e.TotalCost).HasColumnName("total_cost");
-
-                entity.Property(e => e.Quantity).HasColumnName("quantity");
+                entity.Property(e => e.BillDate).HasColumnName("bill_date");
 
                 entity.Property(e => e.Username)
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasColumnName("username");
+
+                entity.HasOne(d => d.Product)
+                    .WithMany(p => p.BillTbs)
+                    .HasForeignKey(d => d.ProductId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_BillTb_ProductTb");
             });
 
             modelBuilder.Entity<BillingDetailTb>(entity =>

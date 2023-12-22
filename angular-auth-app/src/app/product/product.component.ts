@@ -42,4 +42,11 @@ export class ProductComponent implements OnInit {
       }
     );
   }
+
+  logout()
+  {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    this.router.navigate(['/login']);
+  }
 }

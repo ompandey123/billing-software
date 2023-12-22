@@ -5,6 +5,7 @@ import{HttpClient, HttpHeaders} from '@angular/common/http';
 import User from './models/register';
 import Product from './models/product';
 import Category from './models/category';
+import Bill from './models/billing';
 
 @Injectable({
   providedIn: 'root'
@@ -64,5 +65,24 @@ private displayCategoryName = 'https://localhost:7035/api/Category';
   return this.http.get<Category[]>(`${this.getCategoryUrl}`);
  }
   //All Category and Category Related API's
+
+  //Billing and All Bill related API's
+  private getAllProdsUrl = 'https://localhost:7035/api/Product'
+  getAllProducts(): Observable<Product[]>{
+    return this.http.get<Product[]>(`${this.getAllProdsUrl}`);
+  }
+
+  private generateBillUrl = 'https://localhost:7035/api/Billing/GenerateBill'
+  generateBill(bill: Bill):Observable<Bill>{
+    const headers = new HttpHeaders({'Content-Type':'application/json'});
+    return this.http.post<Bill>(`${this.generateBillUrl}`,JSON.stringify(bill),{headers})
+  }
+
+  private getBillByUsername = 'https://localhost:7035/api/Billing/getBillDetail/'
+  getUserBills(username: string):Observable<Bill[]>{
+    let userURL = `${this.getBillByUsername}${username}`;
+    return this.http.get<Bill[]>(userURL);
+  }
+  //Billing and All Bill related API's
 }
 

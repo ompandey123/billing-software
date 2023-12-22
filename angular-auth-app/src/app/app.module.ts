@@ -38,7 +38,7 @@ import { BillingDetailComponent } from './billing-detail/billing-detail.componen
     CategoryComponent,
     ContactusComponent,
     BillingComponent,
-    BillingDetailComponent
+    BillingDetailComponent,
   ],
   imports: [
     BrowserModule,

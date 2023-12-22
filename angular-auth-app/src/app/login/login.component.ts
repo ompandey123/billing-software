@@ -86,9 +86,11 @@ export class LoginComponent{
 
     this.bs.login(this.user).subscribe(
       (result) => {
+        // localStorage.setItem('user',result);
         localStorage.setItem('user', JSON.stringify(result));
+        console.log(localStorage.getItem('user'));
         this.router.navigate(['dashboard']);
-        console.log("Login Success", result);
+        console.log("Login Success");
       },
       (error) => {
         console.error("Login Failed", error); // Log the specific error

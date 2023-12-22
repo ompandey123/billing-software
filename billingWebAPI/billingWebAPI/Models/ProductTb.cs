@@ -8,6 +8,7 @@ namespace billingWebAPI.Models
     {
         public ProductTb()
         {
+            //BillTbs = new HashSet<BillTb>();
             //BillingDetailTbs = new HashSet<BillingDetailTb>();
             //ProductRetailerMasterTbs = new HashSet<ProductRetailerMasterTb>();
             //ProductSupplierMasters = new HashSet<ProductSupplierMaster>();
@@ -30,6 +31,8 @@ namespace billingWebAPI.Models
         public virtual CompanyTb? Company { get; set; }
         [JsonIgnore]
         public virtual UsersTb? User { get; set; }
+        [JsonIgnore]
+        public virtual ICollection<BillTb>? BillTbs { get; set; }
         [JsonIgnore]
         public virtual ICollection<BillingDetailTb>? BillingDetailTbs { get; set; }
         [JsonIgnore]

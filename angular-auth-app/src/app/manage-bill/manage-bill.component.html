@@ -1,0 +1,89 @@
+<!-- admin-panel.component.html -->
+
+<div class="admin-panel-container">
+  <div class="sidenav-container">
+    <!-- Side Navigation -->
+    <div class="sidenav" style="position: fixed;">
+      <div class="sidenav-header" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ; font-size: 30px;"><a href="/admin" style="color: white; text-decoration: none;">Billing360-Admin</a></div>
+      <ul class="nav-list">
+        <li><a mat-raised-button routerLink="/manageUsers" style="text-decoration: none; background-color: black; width: 200px; height: 45px; text-align: center; margin-left: 15px;">Users</a><br><br><br></li>
+        <li><a mat-raised-button color="accent" routerLink="/manageProducts" style="text-decoration: none; background-color: black; width: 200px; height: 45px; text-align: center; margin-left: 15px;">Products</a><br><br><br></li>
+        <li><a mat-raised-button color="accent" routerLink="/manageCategories" style="text-decoration: none; background-color: black; width: 200px; height: 45px; text-align: center; margin-left: 15px;">Categories</a><br><br><br></li>
+        <li><a mat-raised-button color="accent" routerLink="/manageBills" style="text-decoration: none; background-color: black; width: 200px; height: 45px; text-align: center; margin-left: 15px;">Bills</a><br><br><br></li>
+        <!-- Add more navigation items as needed -->
+      </ul>
+    </div>
+
+    <!-- Main Content -->
+    <!-- <div class="content"> -->
+      <mat-card class="formProduct">
+        <mat-card-content>
+         <p style="font-size: 50px; font-weight:500;">Manage Bills</p>
+            <!---<form (submit)="addCategories()">
+              <div class="form-group">
+               <label>Company name</label>
+               <select [(ngModel)]="selectedCompany" [ngModelOptions]="{standalone: true}">
+                <option *ngFor="let comp of companies" [value]="comp.companyId">{{comp.companyName}}</option>
+              </select><br><br>
+              </div>
+              <div class="form-group">
+                <label>Category name</label>
+                <input type="text" name="categoryName" id="categoryName" [(ngModel)]="categoryName" [ngModelOptions]="{standalone: true}"><br><br>
+               </div>
+               <div class="form-group">
+                <label>Common name</label>
+                <input type="text" name="commonName" id="commonName" [(ngModel)]="commonName" [ngModelOptions]="{standalone: true}"><br><br>
+               </div>
+               <div class="form-group">
+                <label>State GST</label>
+                <input type="text" name="sgst" id="sgst" [(ngModel)]="sgst" [ngModelOptions]="{standalone: true}"><br><br>
+               </div>
+               <div class="form-group">
+                <label>Central GST</label>
+                <input type="text" name="cgst" id="cgst" [(ngModel)]="cgst" [ngModelOptions]="{standalone: true}"><br><br>
+               </div>
+               <div class="form-group">
+                <label>International GST</label>
+                <input type="text" name="igst" id="igst" [(ngModel)]="igst" [ngModelOptions]="{standalone: true}"><br><br>
+               </div>
+               <div class="form-group">
+                <label>Union Territory GST</label>
+                <input type="text" name="pgst" id="pgst" [(ngModel)]="pgst" [ngModelOptions]="{standalone: true}"><br><br>
+               </div>
+              <button mat-raised-button color="primary" type="submit" style="background-color: black; color: white;">Submit</button>
+            </form> -->
+          <table mat-table class="mat-elevation-z8" style="width: 120%;">
+            <thead>
+              <!-- Position Column -->
+              <tr>
+                <!-- Add more headers as needed -->
+                <th> Bill Id </th>
+                <th> Username </th>
+                <th> Product Id </th>
+                <th>  Quantity </th>
+                <th> Tax </th>
+                <th> Grand Total </th>
+                <th> Bill Date </th>
+                <th> Action </th>
+                <!-- <th> Bill Date </th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let b of bills">
+                <td> {{b.billId}} </td>
+                <td> {{b.username}} </td>
+                <td> {{b.productId}} </td>
+                <td> {{b.quantity}} </td>
+                <td> {{b.tax}} </td>
+                <td> {{b.grandTotal}} </td>
+                <td> {{b.billDate}} </td>
+                <td><button mat-raised-button color="accent" (click)="b.billId && deleteBill(b.billId)" style="background-color: red; color: white; text-decoration: none;">Delete</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </mat-card-content>
+      </mat-card>
+      <!-- Your main content goes here -->
+      <router-outlet></router-outlet>
+  </div>
+</div>

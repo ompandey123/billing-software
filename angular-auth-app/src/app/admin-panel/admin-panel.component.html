@@ -1,0 +1,48 @@
+<!-- admin-panel.component.html -->
+
+<div class="admin-panel-container">
+  <div class="sidenav-container">
+    <!-- Side Navigation -->
+    <div class="sidenav">
+      <div class="sidenav-header" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ; font-size: 30px;">Billing360-Admin</div><br><br>
+      <ul class="nav-list">
+        <li><a mat-raised-button routerLink="/manageUsers" style="text-decoration: none; background-color: black; width: 200px; height: 45px; text-align: center; margin-left: 15px;">Users</a><br><br><br></li>
+        <li><a mat-raised-button color="accent" routerLink="/manageProducts" style="text-decoration: none; background-color: black; width: 200px; height: 45px; text-align: center; margin-left: 15px;">Products</a><br><br><br></li>
+        <li><a mat-raised-button color="accent" routerLink="/manageCategories" style="text-decoration: none; background-color: black; width: 200px; height: 45px; text-align: center; margin-left: 15px;">Categories</a><br><br><br></li>
+        <li><a mat-raised-button color="accent" routerLink="/manageBills" style="text-decoration: none; background-color: black; width: 200px; height: 45px; text-align: center; margin-left: 15px;">Bills</a><br><br><br></li>
+        <li><a mat-raised-button color="accent" (click)="logout()" style="text-decoration: none; background-color: black; width: 200px; height: 45px; text-align: center; margin-left: 15px;">Logout</a><br><br><br></li>
+        <!-- Add more navigation items as needed -->
+      </ul>
+    </div>
+
+    <!-- Main Content -->
+    <!-- <div class="content"> -->
+      <mat-card class="dashboardInfo">
+        <mat-card-content>
+          <h2>Welcome to Billing360 Admin Dashboard</h2>
+          <p>Your all-in-one solution for efficient billing and invoicing.</p>
+      
+          <div class="info-section">
+            <div class="info-item">
+              <h3>Total Products</h3>
+              <p>{{productCount}}</p>
+            </div>
+            <div class="info-item">
+              <h3>Total Categories</h3>
+              <p>{{categoryCount}}</p>
+            </div>
+            <div class="info-item">
+              <h3>Today's Revenue</h3>
+              <p>&#8377; {{revenue}} </p>
+            </div>
+            <div class="info-item">
+              <h3>Bills Generated</h3>
+              <p> {{billCount}} </p>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+      <!-- Your main content goes here -->
+      <router-outlet></router-outlet>
+  </div>
+</div>

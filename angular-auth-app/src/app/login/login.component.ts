@@ -81,23 +81,48 @@ export class LoginComponent{
   // }
 
   user: Login = {email:'', password:''}
-  OnSubmit() {
-  if (this.form.valid) {
+//   OnSubmit() {
+//   if (this.form.valid) {
 
-    this.bs.login(this.user).subscribe(
-      (result) => {
-        // localStorage.setItem('user',result);
-        localStorage.setItem('user', JSON.stringify(result));
-        console.log(localStorage.getItem('user'));
-        this.router.navigate(['dashboard']);
-        console.log("Login Success");
-      },
-      (error) => {
-        console.error("Login Failed", error); // Log the specific error
-      }
-    );
+//     this.bs.login(this.user).subscribe(
+//       (result) => {
+//         // localStorage.setItem('user',result);
+//         localStorage.setItem('user', JSON.stringify(result));
+//         console.log(localStorage.getItem('user'));
+//         this.router.navigate(['dashboard']);
+//         console.log("Login Success");
+//       },
+//       (error) => {
+//         console.error("Login Failed", error); // Log the specific error
+//       }
+//     );
+//   } else {
+//     console.log("FILL THE FIELDS");
+//   }
+// }
+
+OnSubmit() {
+  if (this.user.email && this.user.password) {
+    if (this.user.email === 'admin@gmail.com' && this.user.password === 'admin123') {
+      // If the entered credentials match the admin credentials, navigate to the admin page
+      this.router.navigate(['admin']);
+    } else {
+      // If not admin credentials, proceed with the login logic
+      this.bs.login(this.user).subscribe(
+        (result) => {
+          localStorage.setItem('user', JSON.stringify(result));
+          this.router.navigate(['dashboard']);
+          console.log("Login Success", result);
+        },
+        (error) => {
+          console.error("Login Failed", error);
+          // Handle error gracefully, e.g., show an error message to the user
+        }
+      );
+    }
   } else {
     console.log("FILL THE FIELDS");
+    // You can also display a message to the user to fill in both fields
   }
 }
 

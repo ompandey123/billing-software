@@ -24,6 +24,11 @@ import { CategoryComponent } from './category/category.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { BillingComponent } from './billing/billing.component';
 import { BillingDetailComponent } from './billing-detail/billing-detail.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { ManageUsersComponent } from './manage-users/manage-users.component';
+import { ManageProductsComponent } from './manage-products/manage-products.component';
+import { ManageCategoryComponent } from './manage-category/manage-category.component';
+import { ManageBillComponent } from './manage-bill/manage-bill.component';
 
 
 @NgModule({
@@ -39,6 +44,11 @@ import { BillingDetailComponent } from './billing-detail/billing-detail.componen
     ContactusComponent,
     BillingComponent,
     BillingDetailComponent,
+    AdminPanelComponent,
+    ManageUsersComponent,
+    ManageProductsComponent,
+    ManageCategoryComponent,
+    ManageBillComponent,
   ],
   imports: [
     BrowserModule,

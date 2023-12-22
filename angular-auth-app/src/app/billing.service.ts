@@ -6,6 +6,7 @@ import User from './models/register';
 import Product from './models/product';
 import Category from './models/category';
 import Bill from './models/billing';
+import Company from './models/company';
 
 @Injectable({
   providedIn: 'root'
@@ -83,6 +84,76 @@ private displayCategoryName = 'https://localhost:7035/api/Category';
     let userURL = `${this.getBillByUsername}${username}`;
     return this.http.get<Bill[]>(userURL);
   }
+
+  private getBillCountUrl='https://localhost:7035/api/Billing/count'
+  getBillcount(): Observable<number>{
+    return this.http.get<number>(this.getBillCountUrl)
+  }
+
+  private getRevenueUrl = 'https://localhost:7035/api/Billing/totalRevenue'
+  getRevenue(): Observable<number>{
+    return this.http.get<number>(this.getRevenueUrl);
+  }
   //Billing and All Bill related API's
+
+  //admin and admin related services
+  private addUserUrl = 'https://localhost:7035/api/User/Register'
+  addNewUser(user: User):Observable<any>{
+    const headers = new HttpHeaders({'Content-Type':'application/json'});
+    return this.http.post<User>(`${this.addUserUrl}`, JSON.stringify(user), {headers});
+  }
+
+  private getAllUserUrl = 'https://localhost:7035/api/User'
+  getUsers() : Observable <User [] > {
+    return this.http.get<User[]>(`${this.getAllUserUrl}`);
+  }
+
+  deleteUserUrl = 'https://localhost:7035/api/User'
+  deleteUser(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.deleteUserUrl}/${id}`);
+  }
+
+  deleteProductUrl = 'https://localhost:7035/api/Product'
+  deleteProduct(id: number): Observable<void>{
+    return this.http.delete<void>(`${this.deleteProductUrl}/${id}`)
+  }
+
+  private getAllCompanies = 'https://localhost:7035/api/Company/GetAllCompanies'
+  getAllComp(): Observable<Company []>{
+   return this.http.get<Company []>(`${this.getAllCompanies}`);
+  }
+
+  private displayCompanyCategory = 'https://localhost:7035/api/Category/getCompany'
+  companyCategory(id: number) : Observable <Category [] > {
+   return this.http.get<Category [] >(`${this.displayCompanyCategory}/${id}`);
+  }
+
+  private addProductsUrl = 'https://localhost:7035/api/Product/addProduct'
+  addProduct(product: Product): Observable<Product>{
+   const header=new HttpHeaders().set('Content-Type','Application/JSON');
+   return this.http.post<Product>(`${this.addProductsUrl}`, product , {headers :header});
+  }
+
+  deleteCategoryUrl = 'https://localhost:7035/api/Category'
+  deleteCategory(id: number): Observable<void>{
+    return this.http.delete<void>(`${this.deleteCategoryUrl}/${id}`)
+  }
+
+  addNewCategoryUrl = 'https://localhost:7035/api/Category/addCategory'
+  addNewCategory(category: Category): Observable<Category>{
+    const header = new HttpHeaders({"Content-Type":"application/json"})
+    return this.http.post<Category>(`${this.addNewCategoryUrl}`, category, { headers: header });
+  } 
+
+  getAllBillsUrl = 'https://localhost:7035/api/Billing/GetBills'
+  getAllBills(): Observable<Bill[]>{
+    return this.http.get<Bill[]>(`${this.getAllBillsUrl}`);
+  }
+
+  deleteBillUrl = 'https://localhost:7035/api/Billing'
+  deleteBill(id: number): Observable<void>{
+    return this.http.delete<void>(`${this.deleteBillUrl}/${id}`)
+  }
+  //admin and admin related services
 }
 

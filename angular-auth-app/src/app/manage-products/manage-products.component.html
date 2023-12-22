@@ -1,0 +1,99 @@
+<!-- admin-panel.component.html -->
+
+<div class="admin-panel-container">
+  <div class="sidenav-container">
+    <!-- Side Navigation -->
+    <div class="sidenav" style="position: fixed;">
+      <div class="sidenav-header" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ; font-size: 30px;"><a href="/admin" style="color: white; text-decoration: none;">Billing360-Admin</a></div>
+      <ul class="nav-list">
+        <li><a mat-raised-button routerLink="/manageUsers" style="text-decoration: none; background-color: black; width: 200px; height: 45px; text-align: center; margin-left: 15px;">Users</a><br><br><br></li>
+        <li><a mat-raised-button color="accent" routerLink="/manageProducts" style="text-decoration: none; background-color: black; width: 200px; height: 45px; text-align: center; margin-left: 15px;">Products</a><br><br><br></li>
+        <li><a mat-raised-button color="accent" routerLink="/manageCategories" style="text-decoration: none; background-color: black; width: 200px; height: 45px; text-align: center; margin-left: 15px;">Categories</a><br><br><br></li>
+        <li><a mat-raised-button color="accent" routerLink="/manageBills" style="text-decoration: none; background-color: black; width: 200px; height: 45px; text-align: center; margin-left: 15px;">Bills</a><br><br><br></li>
+        <!-- Add more navigation items as needed -->
+      </ul>
+    </div>
+
+    <!-- Main Content -->
+    <!-- <div class="content"> -->
+      <mat-card class="formProduct">
+        <mat-card-content>
+          <p style="font-size: 50px; font-weight:500;">Manage Products</p>
+            <form (submit)="addProduct()">
+              <div class="form-group">
+               <label>Company</label>
+               <select [(ngModel)]="selectedCompany" (change)="onCompanyChange()" [ngModelOptions]="{standalone:true}">
+                <option *ngFor="let c of companies" [value]="c.companyId">{{c.companyName}}</option>
+               </select><br><br>
+              </div>
+              <div class="form-group">
+                <label>Category</label>
+                <select [(ngModel)]="selectedCategory" [ngModelOptions]="{standalone:true}">
+                  <option *ngFor="let category of categories" [value]="category.categoryId">{{ category.categoryName }}</option>
+                </select><br><br>
+               </div>
+               <div class="form-group">
+                <label>User ID</label>
+                <input type="text" name="userId" id="userId" [(ngModel)]="userId" [ngModelOptions]="{standalone:true}"><br><br>
+               </div>
+               <div class="form-group">
+                <label>Product Name</label>
+                <input type="text" name="productName" id="productName" [(ngModel)]="productName" [ngModelOptions]="{standalone:true}"><br><br>
+               </div>
+               <div class="form-group">
+                <label>Brand</label>
+                <input type="text" name="productBrand" id="productBrand" [(ngModel)]="productBrand" [ngModelOptions]="{standalone:true}"><br><br>
+               </div>
+               <div class="form-group">
+                <label>Measurement</label>
+                <input type="text" name="productMeasurement" id="productMeasurement" [(ngModel)]="productMeasurement" [ngModelOptions]="{standalone:true}"><br><br>
+               </div>
+               <div class="form-group">
+                <label>Price</label>
+                <input type="text" name="productPriceOn" id="productPriceOn" [(ngModel)]="productPriceOn" [ngModelOptions]="{standalone:true}"><br><br>
+               </div>
+               <div class="form-group">
+                <label>Packaging</label>
+                <input type="text" name="productPackaging" id="productPackaging" [(ngModel)]="productPackaging" [ngModelOptions]="{standalone:true}"><br><br>
+               </div>
+               <div class="form-group">
+                <label>Quantity</label>
+                <input type="text" name="productQuantity" id="productQuantity" [(ngModel)]="productQuantity" [ngModelOptions]="{standalone:true}"><br><br>
+               </div>
+              <button mat-raised-button color="primary" type="submit" style="background-color: black; color: white;">Submit</button>
+            </form>
+          <table mat-table class="mat-elevation-z8" style="width: 120%;">
+            <thead>
+              <!-- Position Column -->
+              <tr>
+                <!-- Add more headers as needed -->
+                <th> Product Id </th>
+                <th> Category </th>
+                <th>  Product Name </th>
+                <th> Brand </th>
+                <th> Measurement </th>
+                <th> Price </th>
+                <th>Quantity</th>
+                <th> Action </th>
+                <!-- <th> Bill Date </th> -->
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let p of products">
+                <td> {{p.productId}} </td>
+                <td> {{p.categoryId}} </td>
+                <td> {{p.productName}} </td>
+                <td> {{p.productBrand}} </td>
+                <td> {{p.productMeasurement}} </td>
+                <td> {{p.productPriceOn}} </td>
+                <td> {{p.productQuantity}} </td>
+                <td><button mat-raised-button color="accent" (click)="p.productId && deleteProduct(p.productId)" style="background-color: red; color: white; text-decoration: none;">Delete</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </mat-card-content>
+      </mat-card>
+      <!-- Your main content goes here -->
+      <router-outlet></router-outlet>
+  </div>
+</div>

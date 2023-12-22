@@ -76,5 +76,37 @@ namespace billingWebAPI.Controllers
 
             return Ok(bill);
         }
+
+        [HttpGet("count")]
+        public async Task<ActionResult<int>> getBillCount()
+        {
+            var billCount = await _context.BillTbs.CountAsync();
+
+            return Ok(billCount);
+        }
+
+        [HttpGet("totalRevenue")]
+        public async Task<ActionResult<int>> getTotalRevenue()
+        {
+            int totalRevenue = (int)await _context.BillTbs.SumAsync(bill => bill.GrandTotal);
+
+            return Ok(totalRevenue);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteCategory(int id)
+        {
+            var bill = await _context.BillTbs.FindAsync(id);
+
+            if (bill == null)
+            {
+                return NotFound();
+            }
+
+            _context.BillTbs.Remove(bill);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
     }
 }

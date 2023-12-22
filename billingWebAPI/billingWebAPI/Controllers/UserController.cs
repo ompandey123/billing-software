@@ -82,5 +82,24 @@ namespace billingWebAPI.Controllers
 
             return Ok(users);
         }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteUser(int id)
+        {
+            var user = await _context.UsersTbs.FindAsync(id);
+
+            if (user == null)
+            {
+                _logger.LogWarning($"User with ID {id} not found");
+                return NotFound();
+            }
+
+            _context.UsersTbs.Remove(user);
+            await _context.SaveChangesAsync();
+
+            _logger.LogInformation($"User with ID {id} successfully deleted.");
+            return NoContent();
+        }
+
     }
 }

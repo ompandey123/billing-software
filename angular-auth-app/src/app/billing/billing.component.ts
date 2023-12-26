@@ -49,33 +49,33 @@ export class BillingComponent implements OnInit {
     console.log('Parsed Quantity:', quantity);
   
     if (!isNaN(quantity)) {
-      switch (quantity) {
-        case 10:
-          console.log('Quantity 10 selected');
-          this.taxOptions = [{ value: 5, label: 5 }];
-          this.selectedTax = 5;
-          break;
-        case 20:
-          console.log('Quantity 20 selected');
-          this.taxOptions = [{ value: 8, label: 8 }];
-          this.selectedTax = 8;
-          break;
-        case 30:
-          console.log('Quantity 30 selected');
-          this.taxOptions = [{ value: 10, label: 10 }];
-          this.selectedTax = 10;
-          break;
-        default:
-          console.log('No options found');
-          this.taxOptions = [];
-          this.selectedTax = null;
+      let taxRate = 0;
+  
+      if (quantity >= 1 && quantity <= 20) {
+        taxRate = 5;
+      } else if (quantity >= 21 && quantity <= 50) {
+        taxRate = 8;
+      } else if (quantity >= 51 && quantity <= 70) {
+        taxRate = 10;
+      } else if (quantity >= 71 && quantity <= 100) {
+        taxRate = 15;
+      } else {
+        console.log('No options found');
+        this.taxOptions = [];
+        this.selectedTax = null;
+        return;
       }
+  
+      console.log(`Quantity ${quantity} selected with ${taxRate}% tax rate`);
+      this.taxOptions = [{ value: taxRate, label: taxRate }];
+      this.selectedTax = taxRate;
     } else {
       console.log('Invalid quantity');
       this.taxOptions = [];
       this.selectedTax = null;
     }
-  }  
+  }
+  
 
 
   productId: number | null = null;

@@ -47,6 +47,11 @@ export class BillingService {
  getProductCount(): Observable<number> {
   return this.http.get<number>(this.countProduct);
 }
+
+private getAllUsernamesUrl  = 'https://localhost:7035/api/User/GetAllUsernames'
+getUsernames(): Observable<User[]>{
+  return this.http.get<User[]>(this.getAllUsernamesUrl);
+}
   //All Products and Product Related API's
 
   //All Category and Category Related API's
@@ -155,5 +160,25 @@ private displayCategoryName = 'https://localhost:7035/api/Category';
     return this.http.delete<void>(`${this.deleteBillUrl}/${id}`)
   }
   //admin and admin related services
+
+  //company API's
+
+  allCompanyUrl = 'https://localhost:7035/api/Company/addCompany'
+  addCompany(company: Company): Observable<Company>{
+    const header = new HttpHeaders({"Content-Type":"application/json"})
+    return this.http.post<Company>(`${this.allCompanyUrl}`, company, { headers: header });
+  }
+
+  getCompaniesUrl = 'https://localhost:7035/api/Company/GetAllCompanies'
+  getCompanies(): Observable<Company[]>{
+    return this.http.get<Company[]>(`${this.getCompaniesUrl}`) 
+  }
+
+  deleteCompanyUrl = 'https://localhost:7035/api/Company'
+  deleteCompany(id: number): Observable<void>{
+    return this.http.delete<void>(`${this.deleteCompanyUrl}/${id}`)
+  }
+
+  //company API's
 }
 

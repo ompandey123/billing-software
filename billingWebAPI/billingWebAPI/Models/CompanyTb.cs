@@ -34,6 +34,6 @@ namespace billingWebAPI.Models
         [JsonIgnore]
         public virtual ICollection<GstTb>? GstTbs { get; set; }
         [JsonIgnore]
-        public virtual ICollection<ProductTb> ProductTbs { get; set; }
+        public virtual ICollection<ProductTb>? ProductTbs { get; set; }
     }
 }

@@ -74,7 +74,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  height: 100%;
+  height: 120%;
   width: 300px; /* Adjust the width as needed */
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -91,7 +91,7 @@
 /* Add this to your component's CSS or to your global styles */
 .dashboardInfo {
   background-color: #f0f0f0;
-  padding: 220px;
+  padding: 150px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-left: 59px;

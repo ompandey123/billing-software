@@ -101,5 +101,18 @@ namespace billingWebAPI.Controllers
             return NoContent();
         }
 
+        [HttpGet("GetAllUsernames")]
+        public async Task<ActionResult<IEnumerable<string>>> GetAllUsernames()
+        {
+            var usernames = await _context.UsersTbs.Select(u => u.Username).ToListAsync();
+
+            if (usernames == null || !usernames.Any())
+            {
+                return NotFound();
+            }
+
+            return Ok(usernames);
+        }
+
     }
 }

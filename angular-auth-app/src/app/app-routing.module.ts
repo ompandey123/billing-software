@@ -14,6 +14,8 @@ import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { ManageProductsComponent } from './manage-products/manage-products.component';
 import { ManageCategoryComponent } from './manage-category/manage-category.component';
 import { ManageBillComponent } from './manage-bill/manage-bill.component';
+import { ManageCompanyComponent } from './manage-company/manage-company.component';
+import { ChartsComponent } from './charts/charts.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -30,7 +32,9 @@ const routes: Routes = [
   {path: 'manageUsers', component: ManageUsersComponent},
   {path:  'manageProducts', component: ManageProductsComponent},
   {path: 'manageCategories', component: ManageCategoryComponent},
-  {path: 'manageBills', component: ManageBillComponent}
+  {path: 'manageBills', component: ManageBillComponent},
+  {path: 'manageCompanies', component: ManageCompanyComponent},
+  {path: 'charts', component: ChartsComponent}
 ];
 
 

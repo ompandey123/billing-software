@@ -72,5 +72,21 @@ namespace billingWebAPI.Controllers
 
             return Ok(categories);
         }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteCompany(int id)
+        {
+            var company = await _context.CompanyTbs.FindAsync(id);
+
+            if (company == null)
+            {
+                return NotFound();
+            }
+
+            _context.CompanyTbs.Remove(company);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
     }
 }

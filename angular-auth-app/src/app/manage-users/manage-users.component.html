@@ -4,12 +4,14 @@
   <div class="sidenav-container">
     <!-- Side Navigation -->
     <div class="sidenav" style="position: fixed;">
-      <div class="sidenav-header" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ; font-size: 30px;"><a href="/admin" style="color: white; text-decoration: none;">Billing360-Admin</a></div>
+      <div class="sidenav-header" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ; font-size: 30px;"><a href="/admin" style="color: white; text-decoration: none;">Billing360-Admin</a></div><br><br>
       <ul class="nav-list">
-        <li><a mat-raised-button routerLink="/manageUsers" style="text-decoration: none; background-color: black; width: 200px; height: 45px; text-align: center; margin-left: 15px;">Users</a><br><br><br></li>
-        <li><a mat-raised-button color="accent" routerLink="/manageProducts" style="text-decoration: none; background-color: black; width: 200px; height: 45px; text-align: center; margin-left: 15px;">Products</a><br><br><br></li>
+        <li><a mat-raised-button routerLink="/manageUsers" style="text-decoration: none; background-color: black; width: 200px; height: 45px; text-align: center; margin-left: 15px;">Owners</a><br><br><br></li>
+        <li><a mat-raised-button routerLink="/manageCompanies" style="text-decoration: none; background-color: black; width: 200px; height: 45px; text-align: center; margin-left: 15px;">Company</a><br><br><br></li>
         <li><a mat-raised-button color="accent" routerLink="/manageCategories" style="text-decoration: none; background-color: black; width: 200px; height: 45px; text-align: center; margin-left: 15px;">Categories</a><br><br><br></li>
+        <li><a mat-raised-button color="accent" routerLink="/manageProducts" style="text-decoration: none; background-color: black; width: 200px; height: 45px; text-align: center; margin-left: 15px;">Products</a><br><br><br></li>
         <li><a mat-raised-button color="accent" routerLink="/manageBills" style="text-decoration: none; background-color: black; width: 200px; height: 45px; text-align: center; margin-left: 15px;">Bills</a><br><br><br></li>
+        <!-- <li><a mat-raised-button color="accent" (click)="logout()" style="text-decoration: none; background-color: black; width: 200px; height: 45px; text-align: center; margin-left: 15px;">Logout</a><br><br><br></li> -->
         <!-- Add more navigation items as needed -->
       </ul>
     </div>
@@ -18,11 +20,11 @@
     <!-- <div class="content"> -->
       <mat-card class="formProduct">
         <mat-card-content>
-          <p style="font-size: 50px; font-weight:500;">Manage Users</p>
+          <p style="font-size: 50px; font-weight:500;">Manage Owners</p>
             <form (ngSubmit)="addUser()">
               <div class="form-group">
                <label>Add Username</label>
-               <input type="text" name="username" id="username" [(ngModel)]="username" [ngModelOptions]="{standalone: true}">
+               <input type="text" name="username" id="username" [(ngModel)]="username" [ngModelOptions]="{standalone: true}" required>
               </div>
               <div class="form-group">
                 <label>Add Email</label>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import User from '../models/register';
 import { Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BillingService } from '../billing.service';
 
 @Component({
@@ -12,7 +13,9 @@ export class ManageUsersComponent implements OnInit {
 
   users: User[] = [];
 
-  constructor(private router: Router, private bs: BillingService){}
+  constructor(private router: Router, private bs: BillingService){
+   
+  }
 
   ngOnInit() {
     this.getAllUsers();

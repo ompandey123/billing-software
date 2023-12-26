@@ -29,6 +29,10 @@ import { ManageUsersComponent } from './manage-users/manage-users.component';
 import { ManageProductsComponent } from './manage-products/manage-products.component';
 import { ManageCategoryComponent } from './manage-category/manage-category.component';
 import { ManageBillComponent } from './manage-bill/manage-bill.component';
+import { ManageCompanyComponent } from './manage-company/manage-company.component';
+import { ChartsComponent } from './charts/charts.component';
+// import { MatTabsModule } from '@angular/material/tabs';
+
 
 
 @NgModule({
@@ -49,6 +53,8 @@ import { ManageBillComponent } from './manage-bill/manage-bill.component';
     ManageProductsComponent,
     ManageCategoryComponent,
     ManageBillComponent,
+    ManageCompanyComponent,
+    ChartsComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,7 +73,7 @@ import { ManageBillComponent } from './manage-bill/manage-bill.component';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    MatToolbarModule
+    MatToolbarModule,
     // MaterialModule
   ],
   

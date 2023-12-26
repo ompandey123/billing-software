@@ -4,6 +4,7 @@ import Category from '../models/category';
 import Company from '../models/company';
 import { Router } from '@angular/router';
 import { BillingService } from '../billing.service';
+import User from '../models/register';
 
 @Component({
   selector: 'app-manage-products',
@@ -14,14 +15,17 @@ export class ManageProductsComponent implements OnInit {
   products: Product[] = [];
   categories: Category[] = [];
   companies: Company[] = [];
+  users: User[] = [];
   selectedCompany: number | null = null;
   selectedCategory: number | null = null;
+  selectedUser: number | null = null;
   
   constructor(private router: Router, private bs: BillingService){}
   
   ngOnInit() {
     this.displayProduct();
     this.fetchCompanies();
+    this.fetchUsers();
   }
 
   displayProduct()
@@ -76,6 +80,18 @@ export class ManageProductsComponent implements OnInit {
     )
   }
 
+  fetchUsers(){
+    this.bs.getUsers().subscribe(
+      data=>{
+        this.users = data
+        console.log(data);
+      },
+      error=>{
+        console.log(error);
+      }
+    )
+  }
+
   onCompanyChange() {
     // Fetch categories based on the selected company
     if (this.selectedCompany) {
@@ -104,7 +120,7 @@ export class ManageProductsComponent implements OnInit {
       const newProduct: Product = {
         companyId: this.selectedCompany,
         categoryId: this.selectedCategory,
-        userId: this.userId,
+        userId: this.selectedUser,
         productName: this.productName,
         productBrand: this.productBrand,
         productMeasurement: this.productMeasurement,
@@ -122,5 +138,17 @@ export class ManageProductsComponent implements OnInit {
           console.log("Error Adding product", error)
         }
       )
+    }
+
+    getAllUsernames() {
+      this.bs.getUsernames().subscribe(
+        (data) => {
+          this.users = data; // Assuming users property is intended to store the usernames
+          console.log(data);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
     }
 }

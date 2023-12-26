@@ -11,7 +11,6 @@
         <li><a mat-raised-button color="accent" routerLink="/manageCategories" style="text-decoration: none; background-color: black; width: 200px; height: 45px; text-align: center; margin-left: 15px;">Categories</a><br><br><br></li>
         <li><a mat-raised-button color="accent" routerLink="/manageProducts" style="text-decoration: none; background-color: black; width: 200px; height: 45px; text-align: center; margin-left: 15px;">Products</a><br><br><br></li>
         <li><a mat-raised-button color="accent" routerLink="/manageBills" style="text-decoration: none; background-color: black; width: 200px; height: 45px; text-align: center; margin-left: 15px;">Bills</a><br><br><br></li>
-        <!-- <li><a mat-raised-button color="accent" style="text-decoration: none; background-color: black; width: 200px; height: 45px; text-align: center; margin-left: 15px;">Logout</a><br><br><br></li> -->
         <!-- Add more navigation items as needed -->
       </ul>
     </div>
@@ -20,8 +19,40 @@
     <!-- <div class="content"> -->
       <mat-card class="formProduct">
         <mat-card-content>
-         <p style="font-size: 50px; font-weight:500;">Manage Bills</p>
-            <!---<form (submit)="addCategories()">
+          <p style="font-size: 50px; font-weight:500;">Manage Company</p>
+          <form (submit)="addCompany()">
+            <div class="form-group">
+              <label>Company name</label>
+              <input type="text" name="companyName" id="companyName" [(ngModel)]="companyName" [ngModelOptions]="{standalone: true}"><br><br>
+             </div>
+             <div class="form-group">
+              <label>Company Admin</label>
+              <input type="text" name="companyAdmin" id="companyAdmin" [(ngModel)]="companyAdmin" [ngModelOptions]="{standalone: true}"><br><br>
+             </div>
+             <div class="form-group">
+              <label for="associationDropdown">Select Company Association:</label>
+              <select id="associationDropdown" [(ngModel)]="companyAssociation" [ngModelOptions]="{standalone: true}">
+                <option value="jointVentures">Joint Ventures</option>
+                <option value="strategicAlliances">Strategic Alliances</option>
+                <option value="partnerships">Partnerships</option>
+                <option value="supplierClient">Supplier-Client Relationships</option>
+                <option value="industryAssociations">Industry Associations</option>
+                <option value="consortiums">Consortiums</option>
+                <option value="franchising">Franchising</option>
+                <option value="mergersAcquisitions">Mergers and Acquisitions</option>
+              </select>
+             </div>
+             <div class="form-group">
+              <label>Company Address</label>
+              <input type="text" name="companyAddress" id="companyAddress" [(ngModel)]="companyAddress" [ngModelOptions]="{standalone: true}"><br><br>
+             </div>
+             <div class="form-group">
+              <label>GST Number</label>
+              <input type="text" name="gstNo" id="gstNo" [(ngModel)]="gstno" [ngModelOptions]="{standalone: true}"><br><br>
+             </div>
+             <button mat-raised-button color="primary" type="submit" style="background-color: black; color: white;">Submit</button><br><br>
+          </form>
+            <!-- <form (submit)="addCategories()">
               <div class="form-group">
                <label>Company name</label>
                <select [(ngModel)]="selectedCompany" [ngModelOptions]="{standalone: true}">
@@ -59,27 +90,27 @@
               <!-- Position Column -->
               <tr>
                 <!-- Add more headers as needed -->
-                <th> Bill Id </th>
-                <th> Username </th>
-                <th> Product Id </th>
-                <th>  Quantity </th>
-                <th> Tax </th>
-                <th> Grand Total </th>
-                <th> Bill Date </th>
-                <th> Action </th>
+                <th> Company Id </th>
+                <th> Company Name </th>
+                <th> Company Admin </th>
+                <th> Company Association </th>
+                <th>  Company Address </th>
+                <th> Gst Number </th>
+                <th colspan="2"> Action </th>
                 <!-- <th> Bill Date </th> -->
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let b of bills">
-                <td> {{b.billId}} </td>
-                <td> {{b.username}} </td>
-                <td> {{b.productId}} </td>
-                <td> {{b.quantity}} </td>
-                <td> {{b.tax}} </td>
-                <td> {{b.grandTotal}} </td>
-                <td> {{b.billDate}} </td>
-                <td><button mat-raised-button color="accent" (click)="b.billId && deleteBill(b.billId)" style="background-color: red; color: white; text-decoration: none;">Delete</button></td>
+              <tr *ngFor="let c of companies">
+               <td> {{c.companyId}} </td>
+               <td> {{c.companyName}} </td>
+               <td> {{c.companyAdmin}} </td>
+               <td> {{c.companyAssociation}} </td>
+               <td> {{c.companyAddress}} </td>
+               <td> {{c.gstno}} </td>
+               <td><button mat-raised-button color="accent" (click)="c.companyId && deleteCompany(c.companyId)" style="background-color: red; color: white; text-decoration: none;">Delete</button>
+                <button mat-raised-button color="accent" style="background-color: green; color: white; text-decoration: none; margin-left: 10px;">Update</button>
+              </td>
               </tr>
             </tbody>
           </table>

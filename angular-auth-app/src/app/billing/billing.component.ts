@@ -38,6 +38,43 @@ export class BillingComponent implements OnInit {
     )
   }
 
+  // updateTaxOptions() {
+  //   console.log('Selected Quantity Type:', typeof this.selectedQuantity);
+  //   console.log('Selected Quantity:', this.selectedQuantity);
+  
+  //   // Convert string to number
+  //   const quantity = Number(this.selectedQuantity);
+  
+  //   console.log('Parsed Quantity Type:', typeof quantity);
+  //   console.log('Parsed Quantity:', quantity);
+  
+  //   if (!isNaN(quantity)) {
+  //     let taxRate = 0;
+  
+  //     if (quantity >= 1 && quantity <= 20) {
+  //       taxRate = 5;
+  //     } else if (quantity >= 21 && quantity <= 50) {
+  //       taxRate = 8;
+  //     } else if (quantity >= 51 && quantity <= 70) {
+  //       taxRate = 10;
+  //     } else if (quantity >= 71 && quantity <= 100) {
+  //       taxRate = 15;
+  //     } else {
+  //       console.log('No options found');
+  //       this.taxOptions = [];
+  //       this.selectedTax = null;
+  //       return;
+  //     }
+  
+  //     console.log(`Quantity ${quantity} selected with ${taxRate}% tax rate`);
+  //     this.taxOptions = [{ value: taxRate, label: taxRate }];
+  //     this.selectedTax = taxRate;
+  //   } else {
+  //     console.log('Invalid quantity');
+  //     this.taxOptions = [];
+  //     this.selectedTax = null;
+  //   }
+  // }
   updateTaxOptions() {
     console.log('Selected Quantity Type:', typeof this.selectedQuantity);
     console.log('Selected Quantity:', this.selectedQuantity);
@@ -48,7 +85,7 @@ export class BillingComponent implements OnInit {
     console.log('Parsed Quantity Type:', typeof quantity);
     console.log('Parsed Quantity:', quantity);
   
-    if (!isNaN(quantity)) {
+    if (!isNaN(quantity) && quantity > 0) {
       let taxRate = 0;
   
       if (quantity >= 1 && quantity <= 20) {
@@ -76,6 +113,7 @@ export class BillingComponent implements OnInit {
     }
   }
   
+  
 
 
   productId: number | null = null;
@@ -96,6 +134,7 @@ export class BillingComponent implements OnInit {
     console.log(newBill);
     this.bs.generateBill(newBill).subscribe(
       (result)=>{
+        this.router.navigate(['/detail']);
         console.log("User Registered",result);
       },
       (error)=>{
@@ -104,6 +143,7 @@ export class BillingComponent implements OnInit {
       }
     )
   }
+
 
   logout()
   {

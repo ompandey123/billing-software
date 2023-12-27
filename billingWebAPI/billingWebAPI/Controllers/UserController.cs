@@ -114,5 +114,37 @@ namespace billingWebAPI.Controllers
             return Ok(usernames);
         }
 
+        [HttpPut("{id}")]
+        public async Task<ActionResult<UsersTb>> UpdateUser(int id, [FromBody] UsersTb updatedUserData)
+        {
+            if (updatedUserData == null)
+            {
+                _logger.LogWarning("Invalid user data. Please provide valid information.");
+                return BadRequest("Invalid Entry");
+            }
+
+            var existingUser = await _context.UsersTbs.FindAsync(id);
+
+            if (existingUser == null)
+            {
+                _logger.LogWarning($"User with ID {id} not found");
+                return NotFound();
+            }
+
+            // Update user properties
+            existingUser.Username = updatedUserData.Username ?? existingUser.Username;
+            existingUser.Email = updatedUserData.Email ?? existingUser.Email;
+            existingUser.Password = updatedUserData.Password ?? existingUser.Password;
+            existingUser.Contact = updatedUserData.Contact ?? existingUser.Contact;
+            existingUser.UserType = updatedUserData.UserType ?? existingUser.UserType;
+
+            // Save changes to the database
+            await _context.SaveChangesAsync();
+
+            _logger.LogInformation($"User with ID {id} successfully updated.");
+            return Ok(existingUser);
+        }
+
+
     }
 }

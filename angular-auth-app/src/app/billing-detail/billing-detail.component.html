@@ -27,8 +27,6 @@
         <!-- Position Column -->
         <tr>
           <!-- Add more headers as needed -->
-          <th> Bill Id </th>
-          <th> Username </th>
           <th> Product Name </th>
           <th> Quantity </th>
           <th> Tax </th>
@@ -39,9 +37,9 @@
       <tbody>
         <!-- Static Data -->
         <tr *ngFor="let b of bills">
-          <td>{{b.billId}}</td>
-          <td>{{b.username}}</td>
-          <td>{{b.productName}}</td>
+          <div style="margin-left: 5px; margin-top: 5px;">
+          {{b.productName}}
+          </div>
           <td>{{b.quantity}}</td>
           <td>{{b.tax}} %</td>
           <td>{{b.grandTotal}}</td>
@@ -51,6 +49,9 @@
         </tr>
       </tbody>
     </table>
+    <div>
+      <p style="font-size: 50px; font-weight:500; margin-left: 5px;"> Your Bill Total:- {{totalGrandTotal}} </p>
+    </div>
   </mat-card-content>
 </mat-card>
 

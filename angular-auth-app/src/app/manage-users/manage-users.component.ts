@@ -12,6 +12,7 @@ import { BillingService } from '../billing.service';
 export class ManageUsersComponent implements OnInit {
 
   users: User[] = [];
+  // selectedUser: User | null = null;
 
   constructor(private router: Router, private bs: BillingService){
    
@@ -57,7 +58,7 @@ export class ManageUsersComponent implements OnInit {
       email: this.email,
       password: this.password,
       contact:this.contact,
-      userType: this.userType
+      userType: ""
     };
     this.bs.addNewUser(newUser).subscribe(
       (result)=>{
@@ -75,5 +76,21 @@ export class ManageUsersComponent implements OnInit {
       }
     )
   }
+
+  populateUserForm(user: User) {
+    // Assign values to form fields directly
+    this.username = user.username;
+    this.email = user.email;
+    this.password = user.password;
+    this.contact = user.contact;
+    // this.userType = user.userType;
+  }
+
+  // updateUser()
+  // {
+  //   const updatedUser: User = {
+
+  //   }
+  // }
 
 }

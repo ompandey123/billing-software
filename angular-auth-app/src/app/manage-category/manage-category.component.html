@@ -44,7 +44,7 @@
                 <input type="text" name="cgst" id="cgst" [(ngModel)]="cgst" [ngModelOptions]="{standalone: true}"><br><br>
                </div>
                <div class="form-group">
-                <label>International GST</label>
+                <label>Integrated GST</label>
                 <input type="text" name="igst" id="igst" [(ngModel)]="igst" [ngModelOptions]="{standalone: true}"><br><br>
                </div>
                <div class="form-group">
@@ -80,6 +80,7 @@
                 <td> {{c.cgst}} </td>
                 <td> {{c.igst}} </td>
                 <td> {{c.pgst}} </td>
+                
                 <td><button mat-raised-button color="accent" (click)="c.categoryId && deleteCategory(c.categoryId)" style="background-color: red; color: white; text-decoration: none;">Delete</button></td>
               </tr>
             </tbody>

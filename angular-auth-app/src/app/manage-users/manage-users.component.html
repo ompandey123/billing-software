@@ -23,11 +23,11 @@
           <p style="font-size: 50px; font-weight:500;">Manage Owners</p>
             <form (ngSubmit)="addUser()">
               <div class="form-group">
-               <label>Add Username</label>
+               <label>Name</label>
                <input type="text" name="username" id="username" [(ngModel)]="username" [ngModelOptions]="{standalone: true}" required>
               </div>
               <div class="form-group">
-                <label>Add Email</label>
+                <label>Username</label>
                 <input type="text" name="email" id="email" [(ngModel)]="email" [ngModelOptions]="{standalone: true}">
                </div>
                <div class="form-group">
@@ -38,15 +38,15 @@
                 <label>Add Contact</label>
                 <input type="text" name="contact" id="contact" [(ngModel)]="contact" [ngModelOptions]="{standalone: true}">
                </div>
-               <div class="form-group">
+               <!-- <div class="form-group">
                 <label>Add User Type</label>
                 <input type="text" name="userType" id="userType" [(ngModel)]="userType" [ngModelOptions]="{standalone: true}">
-               </div>
+               </div> -->
               <!-- <div class="form-group">
                 <label for="message">Your Message:</label>
                 <textarea id="message" name="message" rows="4" required></textarea>
               </div> -->
-              <button mat-raised-button color="primary" type="submit" style="background-color: black; color: white;">Submit</button>
+              <button mat-raised-button color="primary" type="submit" style="background-color: black; color: white;">Submit</button> <button mat-raised-button color="primary" type="submit" style="background-color: black; color: white; margin-left: 18px;">Update</button>
             </form>
           <table mat-table class="mat-elevation-z8" style="width: 120%;">
             <thead>
@@ -54,12 +54,11 @@
               <tr>
                 <!-- Add more headers as needed -->
                 <th> User Id </th>
-                <th> Username </th>
-                <th>  Email </th>
+                <th> Name </th>
+                <th>  Username </th>
                 <th> Password </th>
                 <th> Contact </th>
-                <th> User Type </th>
-                <th> Action </th>
+                <th colspan="2"> Action </th>
                 <!-- <th> Bill Date </th> -->
               </tr>
             </thead>
@@ -71,8 +70,10 @@
                 <td> {{u.email}} </td>
                 <td> {{u.password}} </td>
                 <td> {{u.contact}} </td>
-                <td> {{u.userType}} </td>
-                <td><button mat-raised-button color="accent" (click)="u.userId && deleteUser(u.userId)" style="background-color: red; color: white; text-decoration: none;">Delete</button></td>
+                <td><button mat-raised-button color="accent" (click)="u.userId && deleteUser(u.userId)" style="background-color: red; color: white; text-decoration: none;">Delete</button>
+                  <button mat-raised-button color="accent" (click)="populateUserForm(u)" style="background-color: green; color: white; text-decoration: none; margin-left: 15px;">Update</button>
+                </td>
+
               </tr>
             </tbody>
           </table>

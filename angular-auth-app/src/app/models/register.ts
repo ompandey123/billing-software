@@ -4,5 +4,5 @@ export default class User {
   email: String="";
   password:String ="";
   contact: String="";
-  userType: String="";
+  userType?: String="";
 }

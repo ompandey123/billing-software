@@ -108,5 +108,18 @@ namespace billingWebAPI.Controllers
 
             return NoContent();
         }
+
+        [HttpGet("totalRevenue/{username}")]
+        public async Task<ActionResult<int>> getTotalRevenueByUsername(string username)
+        {
+            double? totalRevenue = await _context.BillTbs
+                .Where(bill => bill.Username == username)
+                .SumAsync(bill => bill.GrandTotal);
+
+            // Explicitly cast the double? to int, handling null values
+            int result = totalRevenue.HasValue ? (int)totalRevenue.Value : 0;
+
+            return Ok(result);
+        }
     }
 }

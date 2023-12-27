@@ -99,6 +99,13 @@ private displayCategoryName = 'https://localhost:7035/api/Category';
   getRevenue(): Observable<number>{
     return this.http.get<number>(this.getRevenueUrl);
   }
+
+  getTotalOfGtUrl = 'https://localhost:7035/api/Billing/totalRevenue'
+  getTotalOfGt(username: string): Observable<number>{
+    let totalUrl = `${this.getTotalOfGtUrl}/${username}`;
+    return this.http.get<number>(totalUrl);
+  }
+
   //Billing and All Bill related API's
 
   //admin and admin related services
@@ -159,6 +166,12 @@ private displayCategoryName = 'https://localhost:7035/api/Category';
   deleteBill(id: number): Observable<void>{
     return this.http.delete<void>(`${this.deleteBillUrl}/${id}`)
   }
+
+
+  updateUserUrl = 'https://localhost:7035/api/User'
+  updateUser(id: number, updatedUserData: User): Observable<User>{
+    return this.http.put<User>(`${this.updateUserUrl}/${id}`, updatedUserData);
+  }
   //admin and admin related services
 
   //company API's
@@ -178,6 +191,8 @@ private displayCategoryName = 'https://localhost:7035/api/Category';
   deleteCompany(id: number): Observable<void>{
     return this.http.delete<void>(`${this.deleteCompanyUrl}/${id}`)
   }
+
+  
 
   //company API's
 }

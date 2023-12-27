@@ -15,12 +15,14 @@ export class BillingDetailComponent implements OnInit {
   localUser = localStorage.getItem('user');
   userObject = this.localUser ? JSON.parse(this.localUser) : null;
   localUsername = this.userObject ? this.userObject.username : '';
+  totalGrandTotal: number = 0;
 
   constructor(private route: Router, private bs: BillingService) {}
 
   ngOnInit() {
     console.log("Local User:", this.localUsername);
     this.displayBill(this.localUsername);
+    this.getGtTotal(this.localUsername);
   }
 
   displayBill(username: string) {
@@ -41,6 +43,20 @@ export class BillingDetailComponent implements OnInit {
         });
       }
     );
+  }
+
+  getGtTotal(username: string)
+  {
+    this.bs.getTotalOfGt(username).subscribe(
+      (data)=>{
+        console.log("Total Grand Total:", data);
+        // Assuming the result contains a property named 'totalGrandTotal'
+        this.totalGrandTotal = data
+      },
+      error=>{
+        console.log(error);
+      }
+    )
   }
 
   logout()

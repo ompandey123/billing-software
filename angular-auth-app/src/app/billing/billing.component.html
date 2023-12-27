@@ -46,7 +46,68 @@
           </div> -->
           <button mat-raised-button color="primary" type="submit">Submit</button>
         </form>
-      </div>
+             </div>
     </div>
   </mat-card-content>
+  <div >
+  <div class="info-section" #pdfContent>
+    <div class="info-item" >
+      <mat-card-content >
+        <p style="font-size: 50px; font-weight:500;">Your Bill {{ localUsername }}</p>
+        <h4>Customer Name:- {{ localUsername}}</h4>
+        <div>
+          <table mat-table class="mat-elevation-z8" style="width: 100%;" >
+            <thead>
+              <tr>
+                <th> Product Name </th>
+                <th> Quantity </th>
+                <th> Tax </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let b of bills">
+                <td>{{b.productName}}</td>
+                <td>{{b.quantity}}</td>
+                <td>{{b.tax}} %</td>
+              </tr>
+            </tbody>
+            <p style="font-size: 50px; font-weight:500; margin-left: 5px;"> Your Bill Total:-</p>
+            <p style="font-size: 50px; font-weight:500; margin-left: 5px; color: red;">&#8377; {{ totalGrandTotal }} </p>
+          </table>
+         
+     
+          <!-- <div #pdfTotalText style="display: none;">
+            <p>Your Bill {{ localUsername }}</p>
+            <p>Your Bill Total: ₹ {{ totalGrandTotal }}</p>
+          </div> -->
+        </div>
+        <div>
+         
+        </div>
+      </mat-card-content>
+    </div>
+    </div>
+  </div>
+  <button mat-raised-button color="accent" (click)="downloadPdf()"  style="background-color: red; color: white; text-decoration: none; margin-left: 15px;">
+    Download Pdf
+  </button>
 </mat-card>
+
+
+<!-- <thead>
+  <tr>
+    <th> Product Name </th>
+    <th> Quantity </th>
+    <th> Tax </th>
+  </tr>
+</thead>
+<tbody>
+  <tr *ngFor="let b of bills">
+    
+    <td>{{b.productName}}</td>
+    
+    <td>{{b.quantity}}</td>
+    <td>{{b.tax}} %</td>
+  </tr>
+  <td colspan="3"><p style="font-size: 50px; font-weight:500; margin-left: 5px;"> Your Bill Total:-</p><p style="font-size: 50px; font-weight:500; margin-left: 5px; color: red;">&#8377; {{totalGrandTotal}} </p></td>
+</tbody> -->

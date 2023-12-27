@@ -30,8 +30,8 @@
           <th> Product Name </th>
           <th> Quantity </th>
           <th> Tax </th>
-          <th> Grand Total </th>
-          <th> Bill Date </th>
+          <!-- <th> Grand Total </th>
+          <th> Bill Date </th> -->
         </tr>
       </thead>
       <tbody>
@@ -42,15 +42,15 @@
           </div>
           <td>{{b.quantity}}</td>
           <td>{{b.tax}} %</td>
-          <td>{{b.grandTotal}}</td>
-          <td>{{b.billDate}}</td>
+          <!-- <td>{{b.grandTotal}}</td>
+          <td>{{b.billDate}}</td> -->
           <!-- <td><button mat-button color="primary" style="background-color: blueviolet; color: white;">View Product</button></td> -->
           <!-- <td><a mat-raised-button color="accent" routerLink="/productDetails" style="background-color: blueviolet; color: white; text-decoration: none;">View Product</a></td> -->
         </tr>
       </tbody>
     </table>
     <div>
-      <p style="font-size: 50px; font-weight:500; margin-left: 5px;"> Your Bill Total:- {{totalGrandTotal}} </p>
+      <p style="font-size: 50px; font-weight:500; margin-left: 5px;"> Your Bill Total:-</p><p style="font-size: 50px; font-weight:500; margin-left: 5px; color: red;">&#8377; {{totalGrandTotal}} </p>
     </div>
   </mat-card-content>
 </mat-card>

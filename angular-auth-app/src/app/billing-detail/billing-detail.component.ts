@@ -23,6 +23,7 @@ export class BillingDetailComponent implements OnInit {
     console.log("Local User:", this.localUsername);
     this.displayBill(this.localUsername);
     this.getGtTotal(this.localUsername);
+   
   }
 
   displayBill(username: string) {
